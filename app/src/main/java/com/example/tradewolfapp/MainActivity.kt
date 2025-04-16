@@ -4,44 +4,55 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.tradewolfapp.ui.theme.TradeWolfAppTheme
+import com.example.tradewolfapp.views.auth.LoginScreen
+import com.example.tradewolfapp.views.WelcomeScreen
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Thread.sleep(3000)
+
+        installSplashScreen()
         enableEdgeToEdge()
+        lifecycle.addObserver(AuthLifecycleObserver())
         setContent {
             TradeWolfAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                val navController = rememberNavController()
+                NavHost(
+                    navController = navController,
+                    startDestination = "welcomeScreen"
+                ) {
+                    composable("welcomeScreen") {
+                        WelcomeScreen(navController)
+                    }
+                    composable("loginScreen") {
+                        LoginScreen(navController, onLoginSuccess = {
+                            print("Login bem-sucedido: ${it.email}")
+                        })
+                    }
                 }
             }
         }
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        if (isFinishing) return
+    }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TradeWolfAppTheme {
-        Greeting("Android")
+class AuthLifecycleObserver : DefaultLifecycleObserver {
+    override fun onDestroy(owner: LifecycleOwner) {
+        if ((owner as ComponentActivity).isFinishing) {
+            Firebase.auth.signOut()
+        }
     }
 }
