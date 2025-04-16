@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "345344050030",
+    "project_id": "tradewolf-e82e4",
+    "storage_bucket": "tradewolf-e82e4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345344050030:android:867daa27b39f08bc5c777f",
+        "android_client_info": {
+          "package_name": "com.example.tradewolfapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345344050030-gsfrl58ngj0bep7rdet3695l0ts6gbph.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tradewolfapp",
+            "certificate_hash": "2ebd86eab3e2cd712733e8bcd51c3219dc5f6202"
+          }
+        },
+        {
+          "client_id": "345344050030-ujaa9imtiva0f597532j4fu4ea5tg2f3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVJgXw2g7aYW9ZUlL5aGtCv3bVRRqLhh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345344050030-ujaa9imtiva0f597532j4fu4ea5tg2f3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
