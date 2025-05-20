@@ -9,6 +9,10 @@ android {
     namespace = "com.example.tradewolfapp"
     compileSdk = 35
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId = "com.example.tradewolfapp"
         minSdk = 27
@@ -20,6 +24,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        buildConfigField( "String", "API_KEY", "\"${project.findProperty("API_KEY")}\"")
     }
 
     buildTypes {
@@ -57,6 +63,21 @@ dependencies {
     implementation(libs.firebase.auth.ktx)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.analytics)
+
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+
+    implementation(libs.retrofit)
+    implementation (libs.converter.gson)
+
+    implementation (libs.logging.interceptor)
+
+    implementation (libs.kotlinx.coroutines.core)
+    implementation (libs.kotlinx.coroutines.android)
+
+    implementation (libs.androidx.lifecycle.livedata.ktx)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
 
 
     val nav_version = "2.8.9"
