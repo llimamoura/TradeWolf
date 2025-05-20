@@ -23,7 +23,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -36,11 +35,8 @@ import com.example.tradewolfapp.model.AuthModel
 import com.example.tradewolfapp.repository.AuthFirebaseRepository
 import com.example.tradewolfapp.ui.theme.DarkGray
 import com.example.tradewolfapp.ui.theme.ForgotColor
-import com.example.tradewolfapp.viewModel.LoginResult
 import com.example.tradewolfapp.viewModel.LoginState
 import com.example.tradewolfapp.viewModel.LoginViewModel
-import com.example.tradewolfapp.viewModel.LoginWithGoogleViewModel
-import com.example.tradewolfapp.viewModel.LoginWithGoogleViewModelFactory
 import com.example.tradewolfapp.views.components.IconButtonComponent
 import com.example.tradewolfapp.views.components.MainButtonComponent
 import com.example.tradewolfapp.views.components.TextDivider
@@ -49,16 +45,12 @@ import com.google.firebase.auth.FirebaseUser
 @Composable
 fun LoginScreen(
     navController: NavController,
-    loginWithGoogleViewModel: LoginWithGoogleViewModel = viewModel(
-        factory = LoginWithGoogleViewModelFactory(AuthFirebaseRepository())
-    ),
     viewModel: LoginViewModel = viewModel {
         LoginViewModel(AuthFirebaseRepository())
     },
-    onLoginSuccess: (FirebaseUser) -> Unit
+    onLoginSuccess: (FirebaseUser) -> Unit 
 ) {
     val loginState by viewModel.loginState.collectAsState()
-    val loginGoogleState by viewModel.loginState.collectAsState()
 
     Column(
         modifier = Modifier
@@ -69,7 +61,7 @@ fun LoginScreen(
 
     ) {
         when (val state = loginState) {
-            is LoginState.Idle -> LoginForm(viewModel::login, loginWithGoogleViewModel = loginWithGoogleViewModel)
+            is LoginState.Idle -> LoginForm(viewModel::login)
             is LoginState.Loading -> {
                 Column (
                     modifier = Modifier.fillMaxSize(),
@@ -97,10 +89,9 @@ fun LoginScreen(
 
 
 @Composable
-fun LoginForm (onLogin: (AuthModel) -> Unit, loginWithGoogleViewModel: LoginWithGoogleViewModel,) {
+fun LoginForm (onLogin: (AuthModel) -> Unit) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    val loginWithGoogleState by loginWithGoogleViewModel.loginState.collectAsState()
     
     Column {
         Text(
@@ -166,19 +157,7 @@ fun LoginForm (onLogin: (AuthModel) -> Unit, loginWithGoogleViewModel: LoginWith
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            when (loginWithGoogleState) {
-                is LoginResult.Idle -> {
-                    val context = LocalContext.current
-                    Button(onClick = { loginWithGoogleViewModel.loginWithGoogle(context = context) }) {
-                        IconButtonComponent(icon = R.drawable.google_logo)
-                    }
-                }
-                is  LoginResult.Loading ->  CircularProgressIndicator(color = Color.White)
-                is LoginResult.Success -> Text(text = "sucesso")
-                is LoginResult.Failure -> Text(text = "erro")
-            }
-
-
+            IconButtonComponent(icon = R.drawable.google_logo)
         }
 
         Spacer(modifier = Modifier.height(65.dp))
