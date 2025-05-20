@@ -48,7 +48,7 @@ fun LoginScreen(
     viewModel: LoginViewModel = viewModel {
         LoginViewModel(AuthFirebaseRepository())
     },
-    onLoginSuccess: (FirebaseUser) -> Unit 
+    onLoginSuccess: (FirebaseUser) -> Unit
 ) {
     val loginState by viewModel.loginState.collectAsState()
 
@@ -81,7 +81,7 @@ fun LoginScreen(
                     Text("Try again")
                 }
             }
-            
+
         }
     }
 }
@@ -89,7 +89,9 @@ fun LoginScreen(
 
 
 @Composable
-fun LoginForm (onLogin: (AuthModel) -> Unit) {
+fun LoginForm(
+    onLogin: (AuthModel) -> Unit,
+) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     
