@@ -49,31 +49,33 @@ class AuthFirebaseRepository {
             val result = credentialManager.getCredential(context, request)
             result.credential
         } catch (e: Exception) {
-            Log.e("AuthFirebaseRepository", "Erro ao obter credencial: ${e.localizedMessage}")
             null
         }
     }
 
-    suspend fun handleGoogleCredential(credential: Credential?) {
-        if (credential is CustomCredential &&
-            credential.type == TYPE_GOOGLE_ID_TOKEN_CREDENTIAL
-        ) {
-            val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
-            firebaseAuthWithGoogle(googleIdTokenCredential.idToken)
-        } else {
-            Log.w("AuthFirebaseRepository", "Google credential not found")
+    suspend fun handleGoogleCredential(credential: Credential?): Result<FirebaseUser> {
+        return try {
+            if (credential is CustomCredential &&
+                credential.type == TYPE_GOOGLE_ID_TOKEN_CREDENTIAL
+            ) {
+                val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
+                firebaseAuthWithGoogle(googleIdTokenCredential.idToken)
+            } else {
+                Result.failure(Exception("Invalid Google credential"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
         }
     }
 
-    private suspend fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-
-        try {
-            val result = auth.signInWithCredential(credential).await()  // Usa extension da KTX
-            val user = result.user
-            Log.d("AuthFirebaseRepository", "signInWithCredential: sucess. User: ${user?.uid}")
+    private suspend fun firebaseAuthWithGoogle(idToken: String): Result<FirebaseUser> {
+        return try {
+            val credential = GoogleAuthProvider.getCredential(idToken, null)
+            val result = auth.signInWithCredential(credential).await()
+            val user = result.user ?: throw Exception("User not found")
+            Result.success(user)
         } catch (e: Exception) {
-            Log.e("AuthFirebaseRepository", "signInWithCredential: error", e)
+            Result.failure(e)
         }
     }
 
