@@ -1,12 +1,13 @@
 package com.example.tradewolfapp.viewModel
 
-import android.annotation.SuppressLint
-import android.app.Application
+
 import android.content.Context
+import android.util.Log
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tradewolfapp.repository.AuthFirebaseRepository
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,6 +20,13 @@ class LoginWithGoogleViewModel (private val authRepository: AuthFirebaseReposito
      val loginState: StateFlow<LoginResult> = _loginState
     private val _user = MutableStateFlow<FirebaseUser?>(null)
     val user: StateFlow<FirebaseUser?> = _user
+
+    init {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            _user.value = currentUser
+        }
+    }
 
     fun loginWithGoogle(context: Context) {
         viewModelScope.launch {
