@@ -4,8 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
+import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -13,15 +12,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.tradewolfapp.repository.AuthFirebaseRepository
 import com.example.tradewolfapp.ui.theme.TradeWolfAppTheme
 import com.example.tradewolfapp.viewModel.CoinsViewModel
-import com.example.tradewolfapp.viewModel.LoginWithGoogleViewModel
-import com.example.tradewolfapp.viewModel.LoginWithGoogleViewModelFactory
-import com.example.tradewolfapp.views.home.HomeScreen
+import com.example.tradewolfapp.views.HomeScreen
 import com.example.tradewolfapp.views.auth.LoginScreen
 import com.example.tradewolfapp.views.WelcomeScreen
-import com.example.tradewolfapp.views.navigations.MainScreen
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 
@@ -45,14 +40,14 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("loginScreen") {
                         LoginScreen(navController, onLoginSuccess = { user ->
-                                navController.navigate("main") {
-                                    popUpTo("main"){ inclusive = true}
+                                navController.navigate("home") {
+                                    popUpTo("home"){ inclusive = true}
                                 }
                         })
                     }
-
-                    composable("main") {
-                        MainScreen(navController)
+                    composable("home") { backStackEntry ->
+                        val viewModel: CoinsViewModel = viewModel(backStackEntry)
+                       HomeScreen(navController, viewModel)
                     }
 
                 }
