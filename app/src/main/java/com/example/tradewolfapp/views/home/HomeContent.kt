@@ -1,3 +1,4 @@
+
 package com.example.tradewolfapp.views.home
 
 import androidx.compose.foundation.layout.Arrangement
@@ -37,7 +38,7 @@ fun HomeContent(
     LaunchedEffect(Unit) {
         viewModel.loadCoinsIfNeeded()
     }
-    
+
     Column(modifier = modifier) {
 
         LazyColumn (
@@ -79,5 +80,5 @@ fun HomeContent(
             }
         }
     }
-    
+
 }

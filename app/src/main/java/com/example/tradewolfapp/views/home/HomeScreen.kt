@@ -29,7 +29,6 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.tradewolfapp.R
 import com.example.tradewolfapp.ui.theme.DarkGray
-import com.example.tradewolfapp.utils.setTime
 import com.example.tradewolfapp.viewModel.LoginWithGoogleViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -40,14 +39,13 @@ fun HomeScreen(
 ) {
     val user by userViewModel.user.collectAsState()
     val userPhoto = user?.photoUrl
-    val setTime = setTime()
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Column {
-                        Text(text = setTime, color = Color.Gray, fontSize = 16.sp)
+                        Text(text = "Good Morning", color = Color.Gray, fontSize = 16.sp)
                         Text(
                             text = user?.displayName ?: "username",
                             color = Color.White,

@@ -1,7 +1,7 @@
 package com.example.tradewolfapp.repository
 
 import android.content.Context
-
+import android.util.Log
 import androidx.credentials.Credential
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential

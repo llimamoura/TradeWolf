@@ -1,5 +1,6 @@
 package com.example.tradewolfapp.views.components
 
+
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -20,4 +21,3 @@ fun CoinIcon(
 
         )
 }
-
