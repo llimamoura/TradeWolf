@@ -12,4 +12,6 @@ val Pink40 = Color(0xFF7D5260)
 val BlueLogo = Color(0xFF00234f)
 
 val DarkGray = Color(0xFF111111)
+val DullGray = Color(0xFF868383)
+val BackgroundDark = Color(0xFF2F3033)
 val ForgotColor = Color(0xFF173EA5)
