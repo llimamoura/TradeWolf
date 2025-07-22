@@ -22,13 +22,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import com.example.tradewolfapp.R
 import com.example.tradewolfapp.ui.theme.DarkGray
+import com.example.tradewolfapp.utils.setTime
 import com.example.tradewolfapp.viewModel.LoginWithGoogleViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,13 +42,15 @@ fun HomeScreen(
 ) {
     val user by userViewModel.user.collectAsState()
     val userPhoto = user?.photoUrl
+    val setTime = setTime()
+    val context = LocalContext.current
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Column {
-                        Text(text = "Good Morning", color = Color.Gray, fontSize = 16.sp)
+                        Text(text = setTime, color = Color.Gray, fontSize = 16.sp)
                         Text(
                             text = user?.displayName ?: "username",
                             color = Color.White,
@@ -60,13 +65,20 @@ fun HomeScreen(
                 navigationIcon = {
                     if (userPhoto != null) {
                         Image(
-                            painter = rememberAsyncImagePainter(model = userPhoto),
+                            painter = rememberAsyncImagePainter(
+                                ImageRequest.Builder(context)
+                                    .data(userPhoto)
+                                    .apply {
+                                        error(R.drawable.logo)
+                                        placeholder(R.drawable.logo)
+                                    }
+                                    .build()
+                            ),
                             contentDescription = "Profile photo",
                             modifier = Modifier
                                 .padding(start = 12.dp)
                                 .size(50.dp)
                                 .clip(CircleShape)
-
                         )
                     } else {
                         IconButton(onClick = { /*fallback*/ }) {

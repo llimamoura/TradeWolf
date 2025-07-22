@@ -59,6 +59,7 @@ fun LoginForm(
                 user?.let {
                     onGoogleLogin(it)
                 }
+                Log.e("User photo", user?.photoUrl.toString())
             }
             is LoginWithGoogleViewModel.LoginResult.Failure -> {
 
