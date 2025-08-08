@@ -1,10 +1,7 @@
-package com.example.tradewolfapp.viewModel
-
+package com.example.tradewolfapp.viewModel.coins
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.tradewolfapp.model.CoinModel
 import com.example.tradewolfapp.repository.CoinsRepository
@@ -13,7 +10,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-
 
 class CoinsViewModel: ViewModel() {
     private val repository = CoinsRepository(ConfigRetrofit.services)
@@ -31,7 +27,7 @@ class CoinsViewModel: ViewModel() {
     fun loadCoinsIfNeeded() {
         if (_coins.value.isEmpty()) {
             loadCoins()
-        }
+        } 
     }
 
  fun loadCoins() {

@@ -1,6 +1,4 @@
-
-package com.example.tradewolfapp.viewModel
-
+package com.example.tradewolfapp.viewModel.auth
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -10,7 +8,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-
 import kotlinx.coroutines.launch
 
 class LoginWithGoogleViewModel (private val authRepository: AuthFirebaseRepository) : ViewModel(){

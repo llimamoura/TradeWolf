@@ -19,8 +19,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.tradewolfapp.repository.AuthFirebaseRepository
 import com.example.tradewolfapp.ui.theme.DarkGray
-import com.example.tradewolfapp.viewModel.LoginState
-import com.example.tradewolfapp.viewModel.LoginViewModel
+import com.example.tradewolfapp.viewModel.auth.LoginState
+import com.example.tradewolfapp.viewModel.auth.LoginViewModel
 import com.google.firebase.auth.FirebaseUser
 
 
@@ -37,7 +37,7 @@ fun LoginScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(DarkGray)
+            .background(Color.White)
             .padding(20.dp),
         verticalArrangement = Arrangement.Center
 

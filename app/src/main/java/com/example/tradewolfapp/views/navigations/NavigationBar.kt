@@ -31,7 +31,7 @@ fun NavigationBar(
     val currentDestination = navController.currentBackStackEntryAsState().value?.destination
 
     androidx.compose.material3.NavigationBar(
-        containerColor = BackgroundDark
+        containerColor = Color.White
     ) {
         navigationItems.forEachIndexed { _, item ->
             if (item.isCustom) {
@@ -57,7 +57,7 @@ fun NavigationBar(
                                 )
                                 .size(66.dp)
                                 .clip(CircleShape)
-                                .background(DullGray)
+                                .background(Color.White)
                                 .padding(8.dp),
                             contentAlignment = Alignment.Center
                         ) {
@@ -69,11 +69,11 @@ fun NavigationBar(
                         }
                     },
                     colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = Color.Blue,
-                        unselectedIconColor = MaterialTheme.colorScheme.surface,
+                        selectedIconColor = Color.Blue.copy(alpha = 0.5f),
+                        unselectedIconColor = Color.Black,
                         indicatorColor = Color.Transparent,
-                        selectedTextColor = Color.Blue,
-                        unselectedTextColor = MaterialTheme.colorScheme.surface
+                        selectedTextColor = Color.Blue.copy(alpha = 0.5f),
+                        unselectedTextColor = Color.Black
                     )
 
                 )
@@ -98,11 +98,11 @@ fun NavigationBar(
                             )
                     },
                     colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = MaterialTheme.colorScheme.primary,
-                        unselectedIconColor = MaterialTheme.colorScheme.surface,
+                        selectedIconColor =Color.Blue.copy(alpha = 0.5f),
+                        unselectedIconColor = Color.Black,
                         indicatorColor = Color.Transparent,
-                        selectedTextColor = MaterialTheme.colorScheme.primary,
-                        unselectedTextColor = MaterialTheme.colorScheme.surface
+                        selectedTextColor = Color.Blue.copy(alpha = 0.5f),
+                        unselectedTextColor = Color.Black
                     )
 
                 )

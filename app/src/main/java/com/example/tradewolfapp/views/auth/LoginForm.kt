@@ -2,6 +2,7 @@ package com.example.tradewolfapp.views.auth
 
 import android.util.Log
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,8 +31,8 @@ import com.example.tradewolfapp.R
 import com.example.tradewolfapp.model.AuthModel
 import com.example.tradewolfapp.repository.AuthFirebaseRepository
 import com.example.tradewolfapp.ui.theme.ForgotColor
-import com.example.tradewolfapp.viewModel.LoginWithGoogleViewModel
-import com.example.tradewolfapp.viewModel.LoginWithGoogleViewModelFactory
+import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModel
+import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModelFactory
 import com.example.tradewolfapp.views.components.IconButtonComponent
 import com.example.tradewolfapp.views.components.MainButtonComponent
 import com.example.tradewolfapp.views.components.TextDivider
@@ -73,13 +74,13 @@ fun LoginForm(
     Column {
         Text(
             text = "Sign in with",
-            color = Color.White,
+            color = Color.Black,
             fontSize = 30.sp,
             fontWeight = FontWeight.Medium
         )
         Text(
             text = "Email and Password",
-            color = Color.White,
+            color = Color.Black,
             fontSize = 30.sp,
             fontWeight = FontWeight.Medium
         )
@@ -91,7 +92,7 @@ fun LoginForm(
             value = email,
             onValueChange = {email = it},
             label = { Text(text = "Email") },
-            textStyle = TextStyle(color = Color.White)
+            textStyle = TextStyle(color = Color.Black)
         )
 
         Spacer(modifier = Modifier.height(15.dp))
@@ -101,7 +102,7 @@ fun LoginForm(
             value = password,
             onValueChange = {password = it},
             label = { Text(text = "Password") },
-            textStyle = TextStyle(color = Color.White)
+            textStyle = TextStyle(color = Color.Black)
         )
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -120,7 +121,7 @@ fun LoginForm(
         MainButtonComponent(
             text = "Sign In",
             onClick = { onLogin(AuthModel(email, password)) },
-            color = Color.Gray,
+            color = Color.Blue.copy(alpha = 0.4f),
             colorText = Color.White
         )
 
@@ -131,8 +132,9 @@ fun LoginForm(
         Spacer(modifier = Modifier.height(25.dp))
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().background(Color.Blue.copy(alpha = 0.4f)),
             horizontalArrangement = Arrangement.SpaceAround
+
         ) {
             IconButtonComponent(icon = R.drawable.google_logo, onClick = {
                 Log.d("LoginScreen", "Google button clicked")
@@ -147,7 +149,7 @@ fun LoginForm(
             horizontalArrangement = Arrangement.Center,
 
             ) {
-            Text(text = "Don´t have an account? Sign up", color = Color.White)
+            Text(text = "Don´t have an account? Sign up", color = Color.Black)
         }
     }
 }

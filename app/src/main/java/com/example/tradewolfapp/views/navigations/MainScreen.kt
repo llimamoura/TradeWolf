@@ -13,8 +13,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tradewolfapp.repository.AuthFirebaseRepository
-import com.example.tradewolfapp.viewModel.LoginWithGoogleViewModel
-import com.example.tradewolfapp.viewModel.LoginWithGoogleViewModelFactory
+import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModel
+import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModelFactory
 import com.example.tradewolfapp.views.home.HomeScreen
 import com.example.tradewolfapp.views.market.MarketScreen
 import com.example.tradewolfapp.views.profile.ProfileScreen
