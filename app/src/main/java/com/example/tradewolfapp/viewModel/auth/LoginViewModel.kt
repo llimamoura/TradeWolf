@@ -1,4 +1,4 @@
-package com.example.tradewolfapp.viewModel
+package com.example.tradewolfapp.viewModel.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

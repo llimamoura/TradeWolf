@@ -3,12 +3,16 @@ package com.example.tradewolfapp.views.home
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,6 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -32,7 +37,9 @@ import coil.request.ImageRequest
 import com.example.tradewolfapp.R
 import com.example.tradewolfapp.ui.theme.DarkGray
 import com.example.tradewolfapp.utils.setTime
-import com.example.tradewolfapp.viewModel.LoginWithGoogleViewModel
+import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModel
+import com.example.tradewolfapp.views.home.components.CardBalance
+import com.example.tradewolfapp.views.home.components.CoinsListView
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -49,18 +56,18 @@ fun HomeScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Column {
+                    Column (modifier = Modifier.padding(horizontal = 10.dp)) {
                         Text(text = setTime, color = Color.Gray, fontSize = 16.sp)
                         Text(
                             text = user?.displayName ?: "username",
-                            color = Color.White,
+                            color = Color.Black,
                             fontSize = 16.sp
                         )
                     }
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = DarkGray,
-                    titleContentColor = Color.White,
+                    containerColor = Color.White,
+                    titleContentColor = Color.Black,
                 ),
                 navigationIcon = {
                     if (userPhoto != null) {
@@ -92,9 +99,9 @@ fun HomeScreen(
                 actions = {
                     IconButton(onClick = { /*TODO*/ }) {
                         Icon(
-                            imageVector = Icons.Filled.Notifications,
+                            imageVector = Icons.Outlined.Notifications,
                             contentDescription = "notifications",
-                            tint = Color.White
+                            tint = Color.Black
                         )
                     }
                 }
@@ -104,11 +111,20 @@ fun HomeScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(DarkGray)
+                .background(Color.White)
                 .padding(innerPadding)
                 .padding(horizontal = 18.dp),
         ) {
-            HomeContent()
+            Spacer(Modifier.height(25.dp))
+            CardBalance()
+            Text(
+                text = "My Portfolio",
+                color = Color.Black,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 10.dp, top = 50.dp)
+            )
+            CoinsListView()
         }
     }
 }

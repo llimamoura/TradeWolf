@@ -1,5 +1,4 @@
-
-package com.example.tradewolfapp.views.home
+package com.example.tradewolfapp.views.home.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,16 +21,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.tradewolfapp.ui.theme.Green
 import com.example.tradewolfapp.utils.formatCryptoValue
-import com.example.tradewolfapp.viewModel.CoinsViewModel
+import com.example.tradewolfapp.viewModel.coins.CoinsViewModel
 import com.example.tradewolfapp.views.components.CoinIcon
 
 @Composable
-fun HomeContent(
+fun CoinsListView(
     modifier: Modifier = Modifier,
-    viewModel: CoinsViewModel = viewModel()
+    viewModel: CoinsViewModel = viewModel(),
 ) {
     val coins by viewModel.coins.collectAsState()
 
@@ -39,15 +41,13 @@ fun HomeContent(
         viewModel.loadCoinsIfNeeded()
     }
 
-    Column(modifier = modifier) {
-
         LazyColumn (
             modifier = Modifier.fillMaxSize()
         ){
 
             itemsIndexed(coins) { index, coin ->
                 if (index > 0) {
-                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(0.1f))
                 }
 
                 Column {
@@ -59,20 +59,20 @@ fun HomeContent(
                     ) {
                         Row {
                             CoinIcon(iconUrl = coin.icon, modifier = Modifier.size(40.dp))
-                            Spacer(modifier = Modifier.width(10.dp))
+                            Spacer(modifier = Modifier.width(15.dp))
                             Column {
-                                Text(text = coin.symbol, color = Color.White)
-                                Text(text = coin.name, color = Color.Gray)
+                                Text(text = coin.symbol, color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                                Text(text = coin.name, color = Color.Gray, fontSize = 14.sp)
                             }
                         }
 
                         Column(
                             horizontalAlignment = Alignment.End
                         ) {
-                            Text(text = coin.price.formatCryptoValue(), color = Color.White)
+                            Text(text = coin.price.formatCryptoValue(), color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 18.sp )
                             Text(
-                                text = "${coin.priceChangeH}",
-                                color = if (coin.priceChangeH >= 0) Color.Green else Color.Red
+                                text = "${coin.priceChangeH}%",
+                                color = if (coin.priceChangeH >= 0) Green else Color.Red
                             )
                         }
                     }
@@ -81,4 +81,3 @@ fun HomeContent(
         }
     }
 
-}
