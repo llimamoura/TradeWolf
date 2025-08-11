@@ -24,6 +24,9 @@ class CoinsViewModel: ViewModel() {
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
+    private val _isSuccess = MutableStateFlow(false)
+    val isSuccess: StateFlow<Boolean> = _isSuccess.asStateFlow()
+
     fun loadCoinsIfNeeded() {
         if (_coins.value.isEmpty()) {
             loadCoins()
@@ -38,6 +41,7 @@ class CoinsViewModel: ViewModel() {
                 Log.d("API_DEBUG", "Dados recebidos: ${coinsList.size} itens")
                 _coins.value = coinsList
                 _error.value = null
+                _isSuccess.value = true
             } catch (e: Exception) {
                 _error.value = "Falha ao carregar dados: ${e.localizedMessage}"
                 _coins.value = emptyList()
