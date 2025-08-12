@@ -55,7 +55,7 @@ fun LoginForm(
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var rememberMe by remember { mutableStateOf(false) }
+    var rememberUser by remember { mutableStateOf(false) }
     val loginState by loginWithGoogleViewModel.loginState.collectAsState()
     val user by loginWithGoogleViewModel.user.collectAsState()
 
@@ -82,9 +82,9 @@ fun LoginForm(
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
-        // Titulo
+
         Text(
-            text = "Sign in with password",
+            text = " Sign in with\nEmail and password",
             color = Color.Black,
             fontSize = 30.sp,
             fontWeight = FontWeight.Medium
@@ -92,7 +92,7 @@ fun LoginForm(
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        // Campo de email
+
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = email,
@@ -103,7 +103,7 @@ fun LoginForm(
 
         Spacer(modifier = Modifier.height(15.dp))
 
-        // Campo de senha
+
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = password,
@@ -112,20 +112,20 @@ fun LoginForm(
             textStyle = TextStyle(color = Color.Black)
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
-        // caixa de seleção remember e reset password alinhados
+
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween, // deixa um elemento no inicio e outro no final
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Checkbox(
-                    checked = rememberMe,
-                    onCheckedChange = { rememberMe = it },
+                    checked = rememberUser,
+                    onCheckedChange = { rememberUser = it },
                     colors = CheckboxDefaults.colors(
                         checkedColor = Color.Blue.copy(alpha = 0.6f)
                     )
@@ -165,25 +165,25 @@ fun LoginForm(
 
         Spacer(modifier = Modifier.height(25.dp))
 
-        // opcoes de login
+
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly // espacos iguais entre elementos
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             IconButtonComponent(icon = R.drawable.facebook_logo, onClick = {
-                //logarr com face
+
             })
             IconButtonComponent(icon = R.drawable.google_logo, onClick = {
                 loginWithGoogleViewModel.loginWithGoogle(context)
             })
             IconButtonComponent(icon = R.drawable.apple_logo, onClick = {
-               //logar com a apple
+
            })
         }
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        //cadastro
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center

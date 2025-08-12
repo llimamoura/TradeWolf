@@ -34,6 +34,7 @@ fun IconButtonComponent(
     IconButton(
         onClick = onClick,
         modifier = Modifier
+            .size(50.dp)
             .fillMaxWidth()
             .height(60.dp)
             .background(color = Color.White)
