@@ -81,7 +81,7 @@ fun LoginForm(
     ) {
 
         Text(
-            text = " Sign in with\nEmail and password",
+            text = "Sign in with\nEmail and password",
             color = Color.Black,
             fontSize = 30.sp,
             fontWeight = FontWeight.Medium
@@ -140,7 +140,7 @@ fun LoginForm(
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier.clickable {
-                    // tela de modificar senha
+
                 }
             )
         }
@@ -164,6 +164,7 @@ fun LoginForm(
 
 
         Row(
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             IconButtonComponent(icon = R.drawable.facebook_logo, onClick = {
@@ -190,7 +191,7 @@ fun LoginForm(
                 color = ForgotColor,
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier.clickable {
-                    // tela de cadastro
+
                 }
             )
         }
