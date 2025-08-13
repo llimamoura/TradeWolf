@@ -19,7 +19,7 @@ class CoinsViewModel: ViewModel() {
     val coins: StateFlow<List<CoinModel>> = _coins.asStateFlow()
 
     private val _error = MutableStateFlow<String?>(null)
-    val error: StateFlow<String?> = _error.asStateFlow()
+    var error: StateFlow<String?> = _error.asStateFlow()
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
@@ -30,6 +30,8 @@ class CoinsViewModel: ViewModel() {
  fun loadCoins() {
         viewModelScope.launch {
             _isLoading.value = true
+            _isSuccess.value = false
+            _error.value = null
             try {
                 val coinsList = repository.fetchCoins()
                 Log.d("API_DEBUG", "Dados recebidos: ${coinsList.size} itens")

@@ -130,7 +130,8 @@ fun HomeScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color.White)
-                .padding(20.dp),
+                .padding(innerPadding)
+                .padding(horizontal = 20.dp),
             verticalArrangement = Arrangement.Center
         ) {
             when {
@@ -149,29 +150,22 @@ fun HomeScreen(
                 }
 
                 isSuccess -> {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(Color.White)
-                            .padding(innerPadding)
-                            .padding(horizontal = 18.dp),
-                    ) {
-                        Spacer(Modifier.height(25.dp))
-                        CardBalance()
-                        Text(
-                            text = "My Portfolio",
-                            color = Color.Black,
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(bottom = 10.dp, top = 50.dp)
-                        )
-                        CoinsListView()
-                    }
+                    Spacer(Modifier.height(25.dp))
+                    CardBalance()
+                    Text(
+                        text = "My Portfolio",
+                        color = Color.Black,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(bottom = 10.dp, top = 50.dp)
+                    )
+                    CoinsListView()
                 }
             }
         }
     }
 }
+
 
 
 
