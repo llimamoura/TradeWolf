@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.tradewolfapp.repository.AuthFirebaseRepository
 import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModel
 import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModelFactory
+import com.example.tradewolfapp.viewModel.coins.CoinsViewModel
 import com.example.tradewolfapp.views.home.HomeScreen
 import com.example.tradewolfapp.views.market.MarketScreen
 import com.example.tradewolfapp.views.profile.ProfileScreen
@@ -44,7 +45,12 @@ fun MainScreen(rootNavController: NavController) {
                     viewModelStoreOwner = backStackEntry,
                     factory = loginFactory
                 )
-                HomeScreen(innerNav, userViewModel)
+                val coinsViewModel: CoinsViewModel = viewModel(
+                    viewModelStoreOwner = backStackEntry
+                )
+
+
+                HomeScreen(innerNav, userViewModel, coinsViewModel)
             }
             composable(Screens.Markets.rout) {
                 MarketScreen()

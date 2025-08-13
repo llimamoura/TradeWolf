@@ -1,7 +1,9 @@
 package com.example.tradewolfapp.views.home
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +15,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.rounded.Notifications
+import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -21,8 +25,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -35,9 +41,12 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.tradewolfapp.R
+import com.example.tradewolfapp.ui.theme.BlueLogo
 import com.example.tradewolfapp.ui.theme.DarkGray
 import com.example.tradewolfapp.utils.setTime
+import com.example.tradewolfapp.viewModel.auth.LoginState
 import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModel
+import com.example.tradewolfapp.viewModel.coins.CoinsViewModel
 import com.example.tradewolfapp.views.home.components.CardBalance
 import com.example.tradewolfapp.views.home.components.CoinsListView
 
@@ -46,17 +55,26 @@ import com.example.tradewolfapp.views.home.components.CoinsListView
 fun HomeScreen(
     navController: NavController,
     userViewModel: LoginWithGoogleViewModel,
+    coinsViewModel: CoinsViewModel
 ) {
     val user by userViewModel.user.collectAsState()
+    val isLoading by coinsViewModel.isLoading.collectAsState()
+    val isSuccess by coinsViewModel.isSuccess.collectAsState()
+    val error by coinsViewModel.error.collectAsState()
     val userPhoto = user?.photoUrl
     val setTime = setTime()
     val context = LocalContext.current
+
+    LaunchedEffect(Unit) {
+        coinsViewModel.loadCoins()
+    }
+
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Column (modifier = Modifier.padding(horizontal = 10.dp)) {
+                    Column(modifier = Modifier.padding(horizontal = 10.dp)) {
                         Text(text = setTime, color = Color.Gray, fontSize = 16.sp)
                         Text(
                             text = user?.displayName ?: "username",
@@ -114,17 +132,40 @@ fun HomeScreen(
                 .background(Color.White)
                 .padding(innerPadding)
                 .padding(horizontal = 18.dp),
+            verticalArrangement = Arrangement.Center
         ) {
-            Spacer(Modifier.height(25.dp))
-            CardBalance()
-            Text(
-                text = "My Portfolio",
-                color = Color.Black,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 10.dp, top = 50.dp)
-            )
-            CoinsListView()
+            when {
+                isLoading -> {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        CircularProgressIndicator(color = BlueLogo)
+                    }
+                }
+
+                error != null -> {
+                    Text(text = error ?: "", color = Color.Red)
+                }
+
+                isSuccess -> {
+                    Spacer(Modifier.height(25.dp))
+                    CardBalance()
+                    Text(
+                        text = "My Portfolio",
+                        color = Color.Black,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(bottom = 10.dp, top = 50.dp)
+                    )
+                    CoinsListView()
+                }
+            }
         }
     }
 }
+
+
+
+
