@@ -131,7 +131,7 @@ fun HomeScreen(
                 .fillMaxSize()
                 .background(Color.White)
                 .padding(innerPadding)
-                .padding(horizontal = 20.dp),
+                .padding(horizontal = 18.dp),
             verticalArrangement = Arrangement.Center
         ) {
             when {
