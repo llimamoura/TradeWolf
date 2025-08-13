@@ -81,7 +81,14 @@ fun LoginForm(
     ) {
 
         Text(
-            text = "Sign in with\nEmail and password",
+            text = "Sign in with ",
+            color = Color.Black,
+            fontSize = 30.sp,
+            fontWeight = FontWeight.Medium
+        )
+
+        Text(
+            text = "Email and password",
             color = Color.Black,
             fontSize = 30.sp,
             fontWeight = FontWeight.Medium
