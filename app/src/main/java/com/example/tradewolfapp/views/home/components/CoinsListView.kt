@@ -34,12 +34,10 @@ import com.example.tradewolfapp.views.components.CoinIcon
 fun CoinsListView(
     modifier: Modifier = Modifier,
     viewModel: CoinsViewModel = viewModel(),
+
 ) {
     val coins by viewModel.coins.collectAsState()
 
-    LaunchedEffect(Unit) {
-        viewModel.loadCoinsIfNeeded()
-    }
 
         LazyColumn (
             modifier = Modifier.fillMaxSize()

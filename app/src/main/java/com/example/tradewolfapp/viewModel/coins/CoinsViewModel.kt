@@ -27,12 +27,6 @@ class CoinsViewModel: ViewModel() {
     private val _isSuccess = MutableStateFlow(false)
     val isSuccess: StateFlow<Boolean> = _isSuccess.asStateFlow()
 
-    fun loadCoinsIfNeeded() {
-        if (_coins.value.isEmpty()) {
-            loadCoins()
-        } 
-    }
-
  fun loadCoins() {
         viewModelScope.launch {
             _isLoading.value = true

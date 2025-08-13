@@ -25,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -40,6 +41,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.tradewolfapp.R
+import com.example.tradewolfapp.ui.theme.BlueLogo
 import com.example.tradewolfapp.ui.theme.DarkGray
 import com.example.tradewolfapp.utils.setTime
 import com.example.tradewolfapp.viewModel.auth.LoginState
@@ -63,11 +65,16 @@ fun HomeScreen(
     val setTime = setTime()
     val context = LocalContext.current
 
+    LaunchedEffect(Unit) {
+        coinsViewModel.loadCoins()
+    }
+
+
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Column (modifier = Modifier.padding(horizontal = 10.dp)) {
+                    Column(modifier = Modifier.padding(horizontal = 10.dp)) {
                         Text(text = setTime, color = Color.Gray, fontSize = 16.sp)
                         Text(
                             text = user?.displayName ?: "username",
@@ -123,54 +130,48 @@ fun HomeScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color.White)
-                .padding(innerPadding)
-                .padding(horizontal = 18.dp),
+                .padding(20.dp),
+            verticalArrangement = Arrangement.Center
         ) {
-            Spacer(Modifier.height(25.dp))
-            CardBalance()
-            Text(
-                text = "My Portfolio",
-                color = Color.Black,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 10.dp, top = 50.dp)
-            )
-            CoinsListView()
-        }
-    }
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
-            .padding(20.dp),
-        verticalArrangement = Arrangement.Center
-    ) {
-        when {
-            isLoading -> {
-                Column (
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ){
-                    CircularProgressIndicator(color = Color.White)
+            when {
+                isLoading -> {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        CircularProgressIndicator(color = BlueLogo)
+                    }
+                }
+
+                error != null -> {
+                    Text(text = error ?: "", color = Color.Red)
+                }
+
+                isSuccess -> {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color.White)
+                            .padding(innerPadding)
+                            .padding(horizontal = 18.dp),
+                    ) {
+                        Spacer(Modifier.height(25.dp))
+                        CardBalance()
+                        Text(
+                            text = "My Portfolio",
+                            color = Color.Black,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(bottom = 10.dp, top = 50.dp)
+                        )
+                        CoinsListView()
+                    }
                 }
             }
-            error != null -> {
-                Text(text = error ?: "", color = Color.Red)
-            }
-            isSuccess -> {
-                CardBalance()
-                Text(
-                    text = "My Portfolio",
-                    color = Color.Black,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 10.dp, top = 50.dp)
-                )
-                CoinsListView()
-            }
         }
     }
-
-
 }
+
+
+
