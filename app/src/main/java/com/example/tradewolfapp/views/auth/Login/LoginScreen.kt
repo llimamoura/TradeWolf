@@ -1,4 +1,4 @@
-package com.example.tradewolfapp.views.auth
+package com.example.tradewolfapp.views.auth.Login
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.tradewolfapp.repository.AuthFirebaseRepository
-import com.example.tradewolfapp.ui.theme.DarkGray
 import com.example.tradewolfapp.viewModel.auth.LoginState
 import com.example.tradewolfapp.viewModel.auth.LoginViewModel
 import com.google.firebase.auth.FirebaseUser
@@ -43,8 +42,8 @@ fun LoginScreen(
 
     ) {
         when (val state = loginState) {
-            is LoginState.Idle -> LoginForm(viewModel::login, onGoogleLogin = {
-                user -> onLoginSuccess(user)
+            is LoginState.Idle -> LoginForm(viewModel::login, onGoogleLogin = { user ->
+                onLoginSuccess(user)
             })
             is LoginState.Loading -> {
                 Column (

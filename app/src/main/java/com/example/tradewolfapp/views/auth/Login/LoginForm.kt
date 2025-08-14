@@ -1,4 +1,4 @@
-package com.example.tradewolfapp.views.auth
+package com.example.tradewolfapp.views.auth.Login
 
 import android.util.Log
 import android.widget.Toast
@@ -29,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.tradewolfapp.R
 import com.example.tradewolfapp.model.AuthModel
 import com.example.tradewolfapp.repository.AuthFirebaseRepository
@@ -43,6 +44,7 @@ import com.google.firebase.auth.FirebaseUser
 
 @Composable
 fun LoginForm(
+    navController : NavController,
     onLogin: (AuthModel) -> Unit,
     onGoogleLogin: (FirebaseUser) -> Unit,
     authRepository: AuthFirebaseRepository = AuthFirebaseRepository(),
@@ -147,7 +149,7 @@ fun LoginForm(
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier.clickable {
-
+                    navController.navigate("recoverPassword")
                 }
             )
         }
