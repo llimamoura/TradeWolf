@@ -1,12 +1,18 @@
 package com.example.tradewolfapp.views.auth.Login
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.tradewolfapp.ui.theme.BlueLogo
 import com.example.tradewolfapp.views.components.MainButtonComponent
 
 
@@ -32,20 +39,26 @@ fun RecoverPassword(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
-            .padding(20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-
+            .padding(22.dp)
+            .background(Color.White),
+        verticalArrangement = Arrangement.spacedBy(24.dp)
+    ) {
+        IconButton(
+            onClick = { navController.popBackStack() },
+            modifier = Modifier.align(Alignment.Start)
         ) {
-        Spacer(modifier = Modifier.height(100.dp))
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = "Voltar",
+                modifier = Modifier.size(24.dp)
+            )
+        }
         Text(
             text = "Forgot your password?",
             color = Color.Black,
-            fontSize = 30.sp,
+            fontSize = 24.sp,
             fontWeight = FontWeight.Medium
         )
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         Text(
             text = "No worries, you just need to type your email address or username and we will send the verification code.",
@@ -53,24 +66,24 @@ fun RecoverPassword(navController: NavController) {
             color = Color.Gray
         )
 
-        Spacer(modifier = Modifier.height(32.dp))
-
         OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp),
             value = email,
             onValueChange = { email = it },
             label = { Text(text = "Email") },
-            textStyle = TextStyle(color = Color.Black)
+            textStyle = TextStyle(color = Color.Black),
+            shape = androidx.compose.material3.MaterialTheme.shapes.medium
         )
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         MainButtonComponent(
             text = "Submit",
-            onClick = {  },
-            color = Color.Blue.copy(alpha = 0.4f),
+            onClick = { },
+            color = BlueLogo,
             colorText = Color.White
         )
-
     }
 }

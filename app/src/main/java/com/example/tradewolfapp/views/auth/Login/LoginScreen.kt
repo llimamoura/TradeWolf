@@ -38,13 +38,15 @@ fun LoginScreen(
             .fillMaxSize()
             .background(Color.White)
             .padding(20.dp),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
 
     ) {
         when (val state = loginState) {
-            is LoginState.Idle -> LoginForm(viewModel::login, onGoogleLogin = { user ->
+            is LoginState.Idle -> LoginForm(onLogin = viewModel::login, onGoogleLogin = { user ->
                 onLoginSuccess(user)
-            })
+            },
+                navController = navController
+            )
             is LoginState.Loading -> {
                 Column (
                     modifier = Modifier.fillMaxSize(),

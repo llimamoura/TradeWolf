@@ -44,13 +44,13 @@ import com.google.firebase.auth.FirebaseUser
 
 @Composable
 fun LoginForm(
-    navController : NavController,
     onLogin: (AuthModel) -> Unit,
     onGoogleLogin: (FirebaseUser) -> Unit,
     authRepository: AuthFirebaseRepository = AuthFirebaseRepository(),
     loginWithGoogleViewModel: LoginWithGoogleViewModel = viewModel(
         factory = LoginWithGoogleViewModelFactory(authRepository)
     )
+    ,navController : NavController
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -100,22 +100,26 @@ fun LoginForm(
 
 
         OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .height(60.dp),
             value = email,
             onValueChange = { email = it },
             label = { Text(text = "Email") },
-            textStyle = TextStyle(color = Color.Black)
+            textStyle = TextStyle(color = Color.Black),
+            shape = androidx.compose.material3.MaterialTheme.shapes.medium
         )
 
         Spacer(modifier = Modifier.height(15.dp))
 
 
         OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .height(60.dp),
             value = password,
             onValueChange = { password = it },
             label = { Text(text = "Password") },
-            textStyle = TextStyle(color = Color.Black)
+            textStyle = TextStyle(color = Color.Black),
+            shape = androidx.compose.material3.MaterialTheme.shapes.medium
         )
 
         Spacer(modifier = Modifier.height(20.dp))
