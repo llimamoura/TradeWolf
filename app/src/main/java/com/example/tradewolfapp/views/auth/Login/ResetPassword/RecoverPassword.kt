@@ -1,4 +1,4 @@
-package com.example.tradewolfapp.views.auth.Login
+package com.example.tradewolfapp.views.auth.Login.ResetPassword
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -74,7 +75,7 @@ fun RecoverPassword(navController: NavController) {
             onValueChange = { email = it },
             label = { Text(text = "Email") },
             textStyle = TextStyle(color = Color.Black),
-            shape = androidx.compose.material3.MaterialTheme.shapes.medium
+            shape = MaterialTheme.shapes.medium
         )
 
         Spacer(modifier = Modifier.height(16.dp))

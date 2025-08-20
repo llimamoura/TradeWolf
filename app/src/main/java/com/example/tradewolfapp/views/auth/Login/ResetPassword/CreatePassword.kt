@@ -1,4 +1,4 @@
-package com.example.tradewolfapp.views.auth.Login
+package com.example.tradewolfapp.views.auth.Login.ResetPassword
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -83,7 +84,7 @@ fun CreatePassword(navController : NavController) {
             onValueChange = { password = it },
             label = { Text(text = "Password") },
             textStyle = TextStyle(color = Color.Black),
-            shape = androidx.compose.material3.MaterialTheme.shapes.medium,
+            shape = MaterialTheme.shapes.medium,
             singleLine = true,
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
@@ -104,7 +105,7 @@ fun CreatePassword(navController : NavController) {
             onValueChange = { repeatPassword = it },
             label = { Text(text = "Repeat Password") },
             textStyle = TextStyle(color = Color.Black),
-            shape = androidx.compose.material3.MaterialTheme.shapes.medium,
+            shape = MaterialTheme.shapes.medium,
             singleLine = true,
             visualTransformation = if (repeatPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
