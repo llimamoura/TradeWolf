@@ -50,7 +50,7 @@ fun RecoverPassword(navController: NavController) {
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = "Voltar",
+                contentDescription = "Back",
                 modifier = Modifier.size(24.dp)
             )
         }
@@ -82,7 +82,7 @@ fun RecoverPassword(navController: NavController) {
 
         MainButtonComponent(
             text = "Submit",
-            onClick = { },
+            onClick = {navController.navigate("checkcode") },
             color = BlueLogo,
             colorText = Color.White
         )

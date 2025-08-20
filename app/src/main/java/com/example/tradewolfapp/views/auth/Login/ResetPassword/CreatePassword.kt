@@ -57,7 +57,7 @@ fun CreatePassword(navController : NavController) {
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = "Voltar",
+                contentDescription = "Back",
                 modifier = Modifier.size(24.dp)
             )
         }
@@ -124,7 +124,7 @@ fun CreatePassword(navController : NavController) {
 
         MainButtonComponent(
             text = "Submit",
-            onClick = { },
+            onClick = {},
             color = BlueLogo,
             colorText = Color.White
         )

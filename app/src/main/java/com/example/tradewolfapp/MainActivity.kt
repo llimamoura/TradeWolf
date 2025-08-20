@@ -14,6 +14,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.tradewolfapp.ui.theme.TradeWolfAppTheme
 import com.example.tradewolfapp.views.auth.Login.LoginScreen
 import com.example.tradewolfapp.views.WelcomeScreen
+import com.example.tradewolfapp.views.auth.Login.ResetPassword.CheckCode
+import com.example.tradewolfapp.views.auth.Login.ResetPassword.CreatePassword
 import com.example.tradewolfapp.views.auth.Login.ResetPassword.RecoverPassword
 import com.example.tradewolfapp.views.navigations.MainScreen
 import com.google.firebase.Firebase
@@ -46,6 +48,12 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("recoverPassword"){
                         RecoverPassword(navController)
+                    }
+                    composable("createpassword"){
+                        CreatePassword(navController)
+                    }
+                    composable("checkcode"){
+                        CheckCode(navController)
                     }
 
                     composable("main") {

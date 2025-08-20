@@ -55,7 +55,7 @@ fun CheckCode(navController: NavController) {
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = "Voltar",
+                contentDescription = "Back",
                 modifier = Modifier.size(24.dp)
             )
         }
@@ -107,7 +107,7 @@ fun CheckCode(navController: NavController) {
 
         MainButtonComponent(
             text = "Submit",
-            onClick = { },
+            onClick = {navController.navigate("createpassword") },
             color = BlueLogo,
             colorText = Color.White
         )
