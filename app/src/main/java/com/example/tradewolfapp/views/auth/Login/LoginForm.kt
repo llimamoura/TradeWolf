@@ -1,4 +1,4 @@
-package com.example.tradewolfapp.views.auth
+package com.example.tradewolfapp.views.auth.Login
 
 import android.util.Log
 import android.widget.Toast
@@ -29,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.tradewolfapp.R
 import com.example.tradewolfapp.model.AuthModel
 import com.example.tradewolfapp.repository.AuthFirebaseRepository
@@ -49,6 +50,7 @@ fun LoginForm(
     loginWithGoogleViewModel: LoginWithGoogleViewModel = viewModel(
         factory = LoginWithGoogleViewModelFactory(authRepository)
     )
+    ,navController : NavController
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -98,22 +100,26 @@ fun LoginForm(
 
 
         OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .height(60.dp),
             value = email,
             onValueChange = { email = it },
             label = { Text(text = "Email") },
-            textStyle = TextStyle(color = Color.Black)
+            textStyle = TextStyle(color = Color.Black),
+            shape = androidx.compose.material3.MaterialTheme.shapes.medium
         )
 
         Spacer(modifier = Modifier.height(15.dp))
 
 
         OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .height(60.dp),
             value = password,
             onValueChange = { password = it },
             label = { Text(text = "Password") },
-            textStyle = TextStyle(color = Color.Black)
+            textStyle = TextStyle(color = Color.Black),
+            shape = androidx.compose.material3.MaterialTheme.shapes.medium
         )
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -147,7 +153,7 @@ fun LoginForm(
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier.clickable {
-
+                    navController.navigate("recoverPassword")
                 }
             )
         }
