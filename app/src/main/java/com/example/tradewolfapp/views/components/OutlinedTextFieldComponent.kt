@@ -33,7 +33,7 @@ fun OutlinedTextFieldComponent(
         modifier = Modifier
         .fillMaxWidth()
         .height(60.dp),
-        textStyle = TextStyle(fontSize = 16.sp),
+        textStyle = TextStyle(fontSize = 15.sp),
         shape = MaterialTheme.shapes.medium, 
         visualTransformation = if (isPassword && !passwordVisible) {
             PasswordVisualTransformation()

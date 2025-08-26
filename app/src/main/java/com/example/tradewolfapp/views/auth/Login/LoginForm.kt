@@ -137,7 +137,7 @@ fun LoginForm(
             Text(
                 text = "Reset password",
                 color = ForgotColor,
-                fontSize = 15.sp,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier.clickable {
                     navController.navigate("recoverPassword")
