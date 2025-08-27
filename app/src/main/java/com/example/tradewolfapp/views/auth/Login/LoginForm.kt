@@ -48,6 +48,8 @@ import com.example.tradewolfapp.views.components.OutlinedTextFieldComponent
 import com.example.tradewolfapp.views.components.TextDivider
 import com.google.firebase.auth.FirebaseUser
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.fillMaxSize
+
 @Composable
 fun LoginForm(
     onLogin: (AuthModel) -> Unit,
@@ -82,28 +84,37 @@ fun LoginForm(
     }
 
     Column(
-        modifier = Modifier.fillMaxWidth()
-       
-        
+        modifier = Modifier
+        .fillMaxSize()
+        .padding(horizontal = 22.dp), 
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         
-        IconButton(
-            onClick = { navController.popBackStack() }
+        Spacer(modifier = Modifier.height(16.dp))
+        
+        Row(
+            modifier = Modifier.fillMaxWidth()
+            .padding(start = 0.dp , top = 34.dp),
+            verticalAlignment = Alignment.CenterVertically,
             
         ) {
-        Icon(
-            imageVector = Icons.Filled.ArrowBack,
-            contentDescription = "Back",
-            modifier = Modifier.size(24.dp),
-            tint = Color.Black
-            )
-        }
-
+             Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Back",
+                    tint = BlueLogo,
+                    modifier = Modifier
+                    .size(24.dp)
+                    .clickable {navController.popBackStack()}
+                )
             
+        }
+        
+        Spacer(modifier  = Modifier.height(40.dp))
+
         Text(
             text = "Let´s log you in",
              fontSize = 30.sp,
-            fontWeight = FontWeight.Medium,
+            fontWeight = FontWeight.Bold,
             color = Color.Black,
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center
@@ -118,7 +129,7 @@ fun LoginForm(
             label = "Email"
         )
 
-        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(26.dp))
 
         OutlinedTextFieldComponent(
             value = password,
