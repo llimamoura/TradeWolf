@@ -45,9 +45,7 @@ fun MainButtonComponent(
         ){
           Text(
             text = text,
-            color = colorText,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.align(Alignment.Center)
+            color = colorText
             )      
         }
         
