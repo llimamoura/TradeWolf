@@ -1,18 +1,24 @@
-package com.example.tradewolfapp.views.auth
+package com.example.tradewolfapp.views.auth.Login
 
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -24,22 +30,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.tradewolfapp.R
+import androidx.navigation.NavController
 import com.example.tradewolfapp.model.AuthModel
 import com.example.tradewolfapp.repository.AuthFirebaseRepository
 import com.example.tradewolfapp.ui.theme.BlueLogo
 import com.example.tradewolfapp.ui.theme.ForgotColor
 import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModel
 import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModelFactory
-import com.example.tradewolfapp.views.components.IconButtonComponent
+import com.example.tradewolfapp.views.components.GoogleSignInButtonComponent
 import com.example.tradewolfapp.views.components.MainButtonComponent
+import com.example.tradewolfapp.views.components.OutlinedTextFieldComponent
 import com.example.tradewolfapp.views.components.TextDivider
 import com.google.firebase.auth.FirebaseUser
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.fillMaxSize
 
 @Composable
 fun LoginForm(
@@ -48,7 +57,8 @@ fun LoginForm(
     authRepository: AuthFirebaseRepository = AuthFirebaseRepository(),
     loginWithGoogleViewModel: LoginWithGoogleViewModel = viewModel(
         factory = LoginWithGoogleViewModelFactory(authRepository)
-    )
+    ),
+    navController: NavController
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -61,132 +71,114 @@ fun LoginForm(
     LaunchedEffect(loginState) {
         when (loginState) {
             is LoginWithGoogleViewModel.LoginResult.Success -> {
-                user?.let {
-                    onGoogleLogin(it)
-                }
+                user?.let { onGoogleLogin(it) }
                 Log.e("User photo", user?.photoUrl.toString())
-        }
+            }
             is LoginWithGoogleViewModel.LoginResult.Failure -> {
                 val errorMessage =
                     (loginState as LoginWithGoogleViewModel.LoginResult.Failure).message
                 Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
             }
             else -> {}
-
         }
     }
 
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+        .fillMaxSize()
+        .padding(horizontal = 22.dp), 
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        
+        Spacer(modifier = Modifier.height(16.dp))
+        
+        Row(
+            modifier = Modifier.fillMaxWidth()
+            .padding(start = 0.dp , top = 34.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            
+        ) {
+             Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Back",
+                    tint = BlueLogo,
+                    modifier = Modifier
+                    .size(24.dp)
+                    .clickable {navController.popBackStack()}
+                )
+            
+        }
+        
+        Spacer(modifier  = Modifier.height(40.dp))
 
         Text(
-            text = "Sign in with ",
+            text = "Let´s log you in",
+             fontSize = 30.sp,
+            fontWeight = FontWeight.Bold,
             color = Color.Black,
-            fontSize = 30.sp,
-            fontWeight = FontWeight.Medium
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center
         )
-
-        Text(
-            text = "Email and password",
-            color = Color.Black,
-            fontSize = 30.sp,
-            fontWeight = FontWeight.Medium
-        )
+        
 
         Spacer(modifier = Modifier.height(30.dp))
 
-
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
+        OutlinedTextFieldComponent(
             value = email,
             onValueChange = { email = it },
-            label = { Text(text = "Email") },
-            textStyle = TextStyle(color = Color.Black)
+            label = "Email"
         )
 
-        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(26.dp))
 
-
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
+        OutlinedTextFieldComponent(
             value = password,
             onValueChange = { password = it },
-            label = { Text(text = "Password") },
-            textStyle = TextStyle(color = Color.Black)
+            label = "Password",
+            isPassword = true
         )
 
         Spacer(modifier = Modifier.height(20.dp))
 
-
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.End
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Checkbox(
-                    checked = rememberUser,
-                    onCheckedChange = { rememberUser = it },
-                    colors = CheckboxDefaults.colors(
-                        checkedColor = Color.Blue.copy(alpha = 0.6f)
-                    )
-                )
-                Text(
-                    text = "Remember me",
-                    color = Color.Black,
-                    fontSize = 15.sp
-                )
-            }
-
             Text(
                 text = "Reset password",
                 color = ForgotColor,
-                fontSize = 15.sp,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier.clickable {
-
+                    navController.navigate("recoverPassword")
                 }
             )
         }
 
         Spacer(modifier = Modifier.height(20.dp))
 
-
         MainButtonComponent(
-            text = "SIGN IN",
+            text = "Sing in",
             onClick = { onLogin(AuthModel(email, password)) },
             color = BlueLogo,
-            colorText = Color.White,
+            colorText = Color.White
         )
 
         Spacer(modifier = Modifier.height(25.dp))
-
 
         TextDivider(text = "or continue with")
 
         Spacer(modifier = Modifier.height(25.dp))
 
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            IconButtonComponent(icon = R.drawable.facebook_logo, onClick = {
-
-            }, contentDescription = "Login with Facebook")
-            IconButtonComponent(icon = R.drawable.google_logo, onClick = {
+        GoogleSignInButtonComponent(
+            onClick = {
                 loginWithGoogleViewModel.loginWithGoogle(context)
-            }, contentDescription = "Login with Google")
-            IconButtonComponent(icon = R.drawable.apple_logo, onClick = {
-
-           }, contentDescription = "Login with Apple")
-        }
+            },
+            modifier = Modifier.fillMaxWidth()
+        )
 
         Spacer(modifier = Modifier.height(30.dp))
-
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -195,11 +187,9 @@ fun LoginForm(
             Text(text = "Don’t have an account? ", color = Color.Black)
             Text(
                 text = "Sign up",
-                color = ForgotColor,
-                fontWeight = FontWeight.Medium,
-                modifier = Modifier.clickable {
-
-                }
+                color = BlueLogo,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.clickable {}
             )
         }
     }
