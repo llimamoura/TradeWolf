@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Icon
@@ -31,6 +31,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.clickable
+import androidx.compose.ui.text.style.TextAlign
+import com.example.tradewolfapp.views.components.OutlinedTextFieldComponent
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.tradewolfapp.ui.theme.BlueLogo
@@ -40,87 +44,71 @@ import com.example.tradewolfapp.views.components.MainButtonComponent
 fun CreatePassword(navController : NavController) {
     var password by remember { mutableStateOf("") }
     var repeatPassword by remember { mutableStateOf("") }
-    var passwordVisible by remember { mutableStateOf(false) }
-    var repeatPasswordVisible by remember { mutableStateOf(false) }
+   
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(22.dp)
-            .background(Color.White),
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+            .padding(horizontal = 22.dp),
+         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        IconButton(
-            onClick = { navController.popBackStack() },
-            modifier = Modifier.align(Alignment.Start)
+         Row(
+            modifier = Modifier.fillMaxWidth()
+            .padding(start = 0.dp , top = 34.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            
         ) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = "Back",
-                modifier = Modifier.size(24.dp)
-            )
+             Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Back",
+                    tint = BlueLogo,
+                    modifier = Modifier
+                    .size(24.dp)
+                    .clickable {navController.popBackStack()}
+                )
+            
         }
+
+        Spacer(modifier = Modifier.height(40.dp))
 
         Text(
             text = "Create password",
             color = Color.Black,
-            fontSize = 30.sp,
-            fontWeight = FontWeight.Medium
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth()
         )
+        
+        Spacer(modifier = Modifier.height(12.dp))
 
         Text(
             text = "Create your new password to login",
             fontSize = 15.sp,
-            color = Color.Gray
+            color = Color.Gray,
+            textAlign = TextAlign.Center
         )
+        
+        Spacer(modifier = Modifier.height(36.dp))
 
-
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp),
-            value = password,
-            onValueChange = { password = it },
-            label = { Text(text = "Password") },
-            textStyle = TextStyle(color = Color.Black),
-            shape = MaterialTheme.shapes.medium,
-            singleLine = true,
-            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-            trailingIcon = {
-                val image =
-                    if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
-                IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                    Icon(imageVector = image, contentDescription = "Toggle password visibility")
-                }
-            }
+        OutlinedTextFieldComponent(
+           value = password,
+           onValueChange = {password = it},
+           label = "Password",
+           isPassword = true
         )
-
-
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp),
-            value = repeatPassword,
-            onValueChange = { repeatPassword = it },
-            label = { Text(text = "Repeat Password") },
-            textStyle = TextStyle(color = Color.Black),
-            shape = MaterialTheme.shapes.medium,
-            singleLine = true,
-            visualTransformation = if (repeatPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-            trailingIcon = {
-                val image =
-                    if (repeatPasswordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
-                IconButton(onClick = { repeatPasswordVisible = !repeatPasswordVisible }) {
-                    Icon(
-                        imageVector = image,
-                        contentDescription = "Toggle repeat password visibility"
-                    )
-                }
-            }
+        
+        Spacer(modifier = Modifier.height(26.dp))
+        
+        OutlinedTextFieldComponent(
+           value = password,
+           onValueChange  = {password = it},
+           label = "Password",
+           isPassword = true
         )
-
-        Spacer(modifier = Modifier.height(16.dp))
+        
+        Spacer(modifier = Modifier.height(40.dp))
 
         MainButtonComponent(
             text = "Submit",
