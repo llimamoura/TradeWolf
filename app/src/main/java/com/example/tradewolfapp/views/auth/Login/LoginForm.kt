@@ -188,7 +188,7 @@ fun LoginForm(
             Text(
                 text = "Sign up",
                 color = BlueLogo,
-                fontWeight = FontWeight.Medium,
+                fontWeight = FontWeight.Bold,
                 modifier = Modifier.clickable {}
             )
         }
