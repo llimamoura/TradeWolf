@@ -33,6 +33,8 @@ import com.example.tradewolfapp.R
 import com.example.tradewolfapp.model.AuthModel
 import com.example.tradewolfapp.repository.AuthFirebaseRepository
 import com.example.tradewolfapp.ui.theme.BlueLogo
+import com.example.tradewolfapp.ui.theme.DeepBlue
+import com.example.tradewolfapp.ui.theme.CobaltBlue
 import com.example.tradewolfapp.ui.theme.ForgotColor
 import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModel
 import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModelFactory
@@ -158,8 +160,9 @@ fun LoginForm(
         MainButtonComponent(
             text = "SIGN IN",
             onClick = { onLogin(AuthModel(email, password)) },
-            color = BlueLogo,
             colorText = Color.White,
+            colorStart = DeepBlue,
+            colorEnd = CobaltBlue
         )
 
         Spacer(modifier = Modifier.height(25.dp))
