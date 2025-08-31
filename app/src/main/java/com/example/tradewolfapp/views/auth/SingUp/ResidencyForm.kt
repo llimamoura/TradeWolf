@@ -177,7 +177,7 @@ fun ResidencyForm(navController: NavController) {
         Card(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(12.dp),
-            colors = CardDefaults.cardColors(containerColor = LightGrayCard)
+            colors = CardDefaults.cardColors(containerColor = Color.Gray)
         ) {
             Column(
                 modifier = Modifier
@@ -210,7 +210,9 @@ fun ResidencyForm(navController: NavController) {
 
         MainButtonComponent(
             text = "Continue",
-            onClick = {},
+            onClick = {
+                navController.navigate("idCard")
+            },
             color = BlueLogo,
             colorText = Color.White
         )

@@ -178,7 +178,9 @@ fun LoginForm(
                 text = "Sign up",
                 color = BlueLogo,
                 fontWeight = FontWeight.Medium,
-                modifier = Modifier.clickable {}
+                modifier = Modifier.clickable {
+                    navController.navigate("residencyScreen")
+                }
             )
         }
     }
