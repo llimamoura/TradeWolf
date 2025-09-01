@@ -25,6 +25,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.tradewolfapp.R
 import com.example.tradewolfapp.ui.theme.BlueLogo
+import com.example.tradewolfapp.ui.theme.DeepBlue
+import com.example.tradewolfapp.ui.theme.CobaltBlue
 import com.example.tradewolfapp.views.components.MainButtonComponent
 
 @Composable
@@ -76,8 +78,9 @@ fun WelcomeScreen(navController: NavController) {
             MainButtonComponent(
                 text = "Get Started",
                 onClick = { navController.navigate("loginScreen") },
-                color = Color.White,
-                colorText = Color.Black,
+                colorText = Color.White,
+                colorStart = DeepBlue,
+                colorEnd = CobaltBlue
             )
 
             Spacer(modifier = Modifier.height(20.dp))
