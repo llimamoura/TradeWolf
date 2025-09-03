@@ -14,6 +14,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Text
 import androidx.navigation.NavController
 import com.example.tradewolfapp.ui.theme.BlueLogo
+import com.example.tradewolfapp.ui.theme.DeepBlue
+import com.example.tradewolfapp.ui.theme.CobaltBlue
 import com.example.tradewolfapp.views.components.MainButtonComponent
 import com.example.tradewolfapp.views.components.OutlinedTextFieldComponent
 
@@ -98,8 +100,9 @@ fun CreatePassword(navController: NavController) {
         MainButtonComponent(
             text = "Submit",
             onClick = { },
-            color = BlueLogo,
-            colorText = Color.White
+            colorText = Color.White,
+            colorStart = DeepBlue,
+            colorEnd = CobaltBlue
         )
     }
 }
