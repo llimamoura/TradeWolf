@@ -84,7 +84,7 @@ fun CheckCode(navController: NavController) {
                 Box(
                     modifier = Modifier
                         .size(48.dp)
-                        .background(Color.LightGray, shape = RoundedCornerShape(12.dp)),
+                        .background(Color.LightGray, shape = RoundedCornerShape(20.dp)),
                     contentAlignment = Alignment.Center
                 ) {
                     OutlinedTextField(
@@ -110,7 +110,7 @@ fun CheckCode(navController: NavController) {
                         modifier = Modifier
                             .fillMaxSize()
                             .focusRequester(focusRequesters[index]),
-                        shape = RoundedCornerShape(12.dp)
+                        shape = RoundedCornerShape(20.dp)
                     )
                 }
             }
