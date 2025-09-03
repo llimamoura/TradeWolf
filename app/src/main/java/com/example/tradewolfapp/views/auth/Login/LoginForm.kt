@@ -163,17 +163,11 @@ fun LoginForm(
         MainButtonComponent(
             text = "Sing in",
             onClick = { onLogin(AuthModel(email, password)) },
-<<<<<<< HEAD:app/src/main/java/com/example/tradewolfapp/views/auth/Login/LoginForm.kt
-            color = BlueLogo,
             colorText = Color.White,
             colorStart = DeepBlue,
             colorEnd = CobaltBlue
-=======
-            colorText = Color.White,
-            colorStart = DeepBlue,
-            colorEnd = CobaltBlue
->>>>>>> 55bb4ca0756e02ca57e5a1ec240eb42fe988163b:app/src/main/java/com/example/tradewolfapp/views/auth/LoginForm.kt
         )
+
 
         Spacer(modifier = Modifier.height(25.dp))
 
