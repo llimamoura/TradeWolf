@@ -21,6 +21,8 @@ import androidx.navigation.NavController
 import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
+import com.example.tradewolfapp.ui.theme.DeepBlue
+import com.example.tradewolfapp.ui.theme.CobaltBlue
 import com.example.tradewolfapp.ui.theme.BlueLogo
 import com.example.tradewolfapp.ui.theme.LightGrayCard
 import com.example.tradewolfapp.views.components.MainButtonComponent
@@ -213,8 +215,9 @@ fun ResidencyForm(navController: NavController) {
             onClick = {
                 navController.navigate("idCard")
             },
-            color = BlueLogo,
-            colorText = Color.White
+            colorText = Color.White,
+            colorStart = DeepBlue,
+            colorEnd = CobaltBlue
         )
     }
 }
