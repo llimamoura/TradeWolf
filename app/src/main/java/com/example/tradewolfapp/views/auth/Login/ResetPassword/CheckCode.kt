@@ -20,6 +20,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.*
 import androidx.navigation.NavController
 import com.example.tradewolfapp.ui.theme.BlueLogo
+import com.example.tradewolfapp.ui.theme.DeepBlue
+import com.example.tradewolfapp.ui.theme.CobaltBlue
 import com.example.tradewolfapp.ui.theme.ForgotColor
 import com.example.tradewolfapp.views.components.MainButtonComponent
 
@@ -129,8 +131,9 @@ fun CheckCode(navController: NavController) {
         MainButtonComponent(
             text = "Submit",
             onClick = { navController.navigate("createpassword") },
-            color = BlueLogo,
-            colorText = Color.White
+            colorText = Color.White,
+            colorStart = DeepBlue,
+            colorEnd = CobaltBlue
         )
     }
 }
