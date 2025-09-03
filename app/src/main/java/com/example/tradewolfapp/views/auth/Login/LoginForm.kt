@@ -39,6 +39,8 @@ import androidx.navigation.NavController
 import com.example.tradewolfapp.model.AuthModel
 import com.example.tradewolfapp.repository.AuthFirebaseRepository
 import com.example.tradewolfapp.ui.theme.BlueLogo
+import com.example.tradewolfapp.ui.theme.DeepBlue
+import com.example.tradewolfapp.ui.theme.CobaltBlue
 import com.example.tradewolfapp.ui.theme.ForgotColor
 import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModel
 import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModelFactory
@@ -150,8 +152,16 @@ fun LoginForm(
         MainButtonComponent(
             text = "Sing in",
             onClick = { onLogin(AuthModel(email, password)) },
+<<<<<<< HEAD:app/src/main/java/com/example/tradewolfapp/views/auth/Login/LoginForm.kt
             color = BlueLogo,
-            colorText = Color.White
+            colorText = Color.White,
+            colorStart = DeepBlue,
+            colorEnd = CobaltBlue
+=======
+            colorText = Color.White,
+            colorStart = DeepBlue,
+            colorEnd = CobaltBlue
+>>>>>>> 55bb4ca0756e02ca57e5a1ec240eb42fe988163b:app/src/main/java/com/example/tradewolfapp/views/auth/LoginForm.kt
         )
 
         Spacer(modifier = Modifier.height(25.dp))
