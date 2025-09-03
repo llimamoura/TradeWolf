@@ -24,7 +24,7 @@ fun ResidencyScreen(
     Column(
         modifier = Modifier
         .fillMaxSize()
-        .padding(horizontal = 22.dp),
+        .padding(horizontal = 22.dp, vertical = 40.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         Spacer(modifier = Modifier.height(80.dp))

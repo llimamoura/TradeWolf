@@ -168,7 +168,7 @@ fun ResidencyForm(navController: NavController) {
 
         Text(
             text = "Verification method",
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Medium,
             color = BlueLogo,
             fontSize = 20.sp,
             modifier = Modifier.fillMaxWidth()
@@ -179,7 +179,7 @@ fun ResidencyForm(navController: NavController) {
         Card(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(12.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.Gray)
+            colors = CardDefaults.cardColors(containerColor = LightGrayCard)
         ) {
             Column(
                 modifier = Modifier

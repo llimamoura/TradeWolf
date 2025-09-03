@@ -19,7 +19,7 @@ import com.example.tradewolfapp.views.auth.Login.ResetPassword.CreatePassword
 import com.example.tradewolfapp.views.auth.Login.ResetPassword.RecoverPassword
 import com.example.tradewolfapp.views.auth.SingUp.ResidencyForm
 import com.example.tradewolfapp.views.auth.SingUp.ResidencyScreen
-import com.example.tradewolfapp.views.auth.SingUp.IdCard
+
 import com.example.tradewolfapp.views.navigations.MainScreen
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -67,9 +67,7 @@ class MainActivity : ComponentActivity() {
                         ResidencyForm(navController)
                     }
 
-                    composable("idCard"){
-                        IdCard(navController)
-                    }
+                  
 
                     composable("main") {
                         MainScreen(navController)

@@ -18,11 +18,7 @@ val ForgotColor = Color(0xFF173EA5)
 val MidnightBlue = Color(0xFF142A4E)
 val BlueGray = Color(0xFF5C7699)
 val Green = Color(0xFF038B02)
-<<<<<<< HEAD
+
 val LightGrayCard = Color(0xFFF5F5F5)
 val DeepBlue = Color(0xFF00224F)
 val CobaltBlue = Color(0xFF004EB5)
-=======
-val DeepBlue = Color(0xFF00224F)
-val CobaltBlue = Color(0xFF004EB5)
->>>>>>> 55bb4ca0756e02ca57e5a1ec240eb42fe988163b
