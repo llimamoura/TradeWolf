@@ -24,6 +24,7 @@ import com.example.tradewolfapp.ui.theme.DeepBlue
 import com.example.tradewolfapp.ui.theme.CobaltBlue
 import com.example.tradewolfapp.ui.theme.ForgotColor
 import com.example.tradewolfapp.views.components.MainButtonComponent
+import androidx.compose.foundation.background
 
 @Composable
 fun CheckCode(navController: NavController) {
@@ -39,21 +40,30 @@ fun CheckCode(navController: NavController) {
     ) {
         Spacer(modifier = Modifier.height(16.dp))
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 34.dp),
-            verticalAlignment = Alignment.CenterVertically
+          
+         Row(
+            modifier = Modifier.fillMaxWidth()
+            .padding(horizontal = 0.dp, vertical = 30.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            
         ) {
-            Icon(
-                imageVector = Icons.Filled.ArrowBack,
-                contentDescription = "Back",
-                tint = BlueLogo,
-                modifier = Modifier
+             Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Back",
+                    tint = BlueLogo,
+                    modifier = Modifier
+                    .size(28.dp)
+                    .background(
+                        color = Color.Gray.copy(alpha = 0.2f),
+                        shape = RoundedCornerShape(8.dp)
+                        
+                    )
                     .size(24.dp)
-                    .clickable { navController.popBackStack() }
-            )
+                    .clickable {navController.popBackStack()}
+                )
+            
         }
+        
 
         Spacer(modifier = Modifier.height(40.dp))
 

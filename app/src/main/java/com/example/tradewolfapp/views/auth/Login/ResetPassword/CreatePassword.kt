@@ -18,6 +18,10 @@ import com.example.tradewolfapp.ui.theme.DeepBlue
 import com.example.tradewolfapp.ui.theme.CobaltBlue
 import com.example.tradewolfapp.views.components.MainButtonComponent
 import com.example.tradewolfapp.views.components.OutlinedTextFieldComponent
+import androidx.compose.foundation.background
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.foundation.shape.RoundedCornerShape
+
 
 @Composable
 fun CreatePassword(navController: NavController) {
@@ -31,27 +35,36 @@ fun CreatePassword(navController: NavController) {
             .padding(horizontal = 22.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 0.dp, top = 34.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Icon(
-                imageVector = Icons.Filled.ArrowBack,
-                contentDescription = "Back",
-                tint = BlueLogo,
-                modifier = Modifier
-                    .size(24.dp)
-                    .clickable { navController.popBackStack() }
-            )
-        }
+        Spacer(modifier = Modifier.height(16.dp))
 
+         Row(
+            modifier = Modifier.fillMaxWidth()
+            .padding(horizontal = 0.dp, vertical = 30.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            
+        ) {
+             Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Back",
+                    tint = BlueLogo,
+                    modifier = Modifier
+                    .size(28.dp)
+                    .background(
+                        color = Color.Gray.copy(alpha = 0.2f),
+                        shape = RoundedCornerShape(8.dp)
+                        
+                    )
+                    .size(24.dp)
+                    .clickable {navController.popBackStack()}
+                )
+            
+        }
         Spacer(modifier = Modifier.height(40.dp))
 
         Text(
             text = "Create password",
             color = Color.Black,
+            fontWeight = FontWeight.Bold,
             fontSize = 24.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
@@ -95,7 +108,7 @@ fun CreatePassword(navController: NavController) {
             )
         }
 
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(46.dp))
 
         MainButtonComponent(
             text = "Submit",

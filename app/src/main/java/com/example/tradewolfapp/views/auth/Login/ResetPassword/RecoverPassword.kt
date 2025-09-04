@@ -23,7 +23,9 @@ import com.example.tradewolfapp.ui.theme.BlueLogo
 import com.example.tradewolfapp.ui.theme.DeepBlue
 import com.example.tradewolfapp.ui.theme.CobaltBlue
 import com.example.tradewolfapp.views.components.MainButtonComponent
+import androidx.compose.foundation.background
 import com.example.tradewolfapp.views.components.OutlinedTextFieldComponent
+import androidx.compose.foundation.shape.RoundedCornerShape
 
 @Composable
 fun RecoverPassword(navController: NavController) {
@@ -38,9 +40,9 @@ fun RecoverPassword(navController: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         
-        Row(
+         Row(
             modifier = Modifier.fillMaxWidth()
-            .padding(start = 0.dp , top = 34.dp),
+            .padding(horizontal = 0.dp, vertical = 30.dp),
             verticalAlignment = Alignment.CenterVertically,
             
         ) {
@@ -49,11 +51,18 @@ fun RecoverPassword(navController: NavController) {
                     contentDescription = "Back",
                     tint = BlueLogo,
                     modifier = Modifier
+                    .size(28.dp)
+                    .background(
+                        color = Color.Gray.copy(alpha = 0.2f),
+                        shape = RoundedCornerShape(8.dp)
+                        
+                    )
                     .size(24.dp)
                     .clickable {navController.popBackStack()}
                 )
             
         }
+        
 
         Spacer(modifier = Modifier.height(40.dp))
 
@@ -88,7 +97,7 @@ fun RecoverPassword(navController: NavController) {
         )
         
 
-        Spacer(modifier = Modifier.height(42.dp))
+        Spacer(modifier = Modifier.height(46.dp))
 
         
         MainButtonComponent(
