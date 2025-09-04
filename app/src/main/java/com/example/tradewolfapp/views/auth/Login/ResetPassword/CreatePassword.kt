@@ -26,6 +26,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.example.tradewolfapp.ui.theme.DeepBlue
+import com.example.tradewolfapp.ui.theme.CobaltBlue
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -125,8 +127,9 @@ fun CreatePassword(navController : NavController) {
         MainButtonComponent(
             text = "Submit",
             onClick = {},
-            color = BlueLogo,
-            colorText = Color.White
+            colorText = Color.White,
+            colorStart = DeepBlue,
+            colorEnd = CobaltBlue
         )
     }
 }
