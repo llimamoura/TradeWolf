@@ -19,6 +19,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -56,6 +57,8 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.foundation.shape.CircleShape
 
 @Composable
 fun LoginForm(
@@ -94,7 +97,7 @@ fun LoginForm(
     Column(
         modifier = Modifier
         .fillMaxSize()
-        .padding(horizontal = 22.dp), 
+        .padding(horizontal = 10.dp), 
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         
@@ -102,7 +105,7 @@ fun LoginForm(
         
         Row(
             modifier = Modifier.fillMaxWidth()
-            .padding(start = 0.dp , top = 34.dp),
+            .padding(horizontal = 0.dp, vertical = 30.dp),
             verticalAlignment = Alignment.CenterVertically,
             
         ) {
@@ -111,6 +114,10 @@ fun LoginForm(
                     contentDescription = "Back",
                     tint = BlueLogo,
                     modifier = Modifier
+                    .background(
+                        color = Color.Gray.copy(alpha = 0.2f)
+                        
+                    )
                     .size(24.dp)
                     .clickable {navController.popBackStack()}
                 )
