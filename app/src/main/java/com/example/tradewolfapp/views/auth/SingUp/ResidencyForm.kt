@@ -28,6 +28,8 @@ import com.example.tradewolfapp.ui.theme.LightGrayCard
 import com.example.tradewolfapp.views.components.MainButtonComponent
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import androidx.compose.foundation.background
+
 
 data class Country(val flag: String, val country: String, val code: String)
 
@@ -70,20 +72,29 @@ fun ResidencyForm(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
+        Spacer(modifier = Modifier.height(16.dp))
+        
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 0.dp, top = 34.dp),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier.fillMaxWidth()
+            .padding(horizontal = 0.dp, vertical = 30.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            
         ) {
-            Icon(
-                imageVector = Icons.Filled.ArrowBack,
-                contentDescription = "Back",
-                tint = BlueLogo,
-                modifier = Modifier
+             Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Back",
+                    tint = BlueLogo,
+                    modifier = Modifier
+                    .size(28.dp)
+                    .background(
+                        color = Color.Gray.copy(alpha = 0.2f),
+                        shape = RoundedCornerShape(8.dp)
+                        
+                    )
                     .size(24.dp)
-                    .clickable { navController.popBackStack() }
-            )
+                    .clickable {navController.popBackStack()}
+                )
+            
         }
 
         Spacer(modifier = Modifier.height(40.dp))
