@@ -51,6 +51,11 @@ import com.example.tradewolfapp.views.components.TextDivider
 import com.google.firebase.auth.FirebaseUser
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.ui.text.input.ImeAction
 
 @Composable
 fun LoginForm(
@@ -67,8 +72,9 @@ fun LoginForm(
     var rememberUser by remember { mutableStateOf(false) }
     val loginState by loginWithGoogleViewModel.loginState.collectAsState()
     val user by loginWithGoogleViewModel.user.collectAsState()
-
     val context = LocalContext.current
+
+    val passwordFocusRequest  = remember { FocusRequester() }
 
     LaunchedEffect(loginState) {
         when (loginState) {
@@ -128,7 +134,11 @@ fun LoginForm(
         OutlinedTextFieldComponent(
             value = email,
             onValueChange = { email = it },
-            label = "Email"
+            label = "Email",
+            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
+            keyboardActions = KeyboardActions(
+                onNext = { passwordFocusRequest.requestFocus() }
+            )
         )
 
         Spacer(modifier = Modifier.height(26.dp))
@@ -137,7 +147,8 @@ fun LoginForm(
             value = password,
             onValueChange = { password = it },
             label = "Password",
-            isPassword = true
+            isPassword = true,
+            modifier = Modifier.focusRequester(passwordFocusRequest)
         )
 
         Spacer(modifier = Modifier.height(20.dp))
