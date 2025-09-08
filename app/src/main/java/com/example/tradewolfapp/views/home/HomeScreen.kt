@@ -74,14 +74,7 @@ fun HomeScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Column(modifier = Modifier.padding(horizontal = 10.dp)) {
-                        Text(text = setTime, color = Color.Gray, fontSize = 16.sp)
-                        Text(
-                            text = user?.displayName ?: "username",
-                            color = Color.Black,
-                            fontSize = 16.sp
-                        )
-                    }
+                    
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = Color.White,
@@ -101,8 +94,8 @@ fun HomeScreen(
                             ),
                             contentDescription = "Profile photo",
                             modifier = Modifier
-                                .padding(start = 12.dp)
-                                .size(50.dp)
+                                .padding(start = 8.dp)
+                                .size(40.dp)
                                 .clip(CircleShape)
                         )
                     } else {
@@ -153,11 +146,11 @@ fun HomeScreen(
                     Spacer(Modifier.height(25.dp))
                     CardBalance()
                     Text(
-                        text = "My Portfolio",
-                        color = Color.Black,
-                        fontSize = 18.sp,
+                        text = "Your assets",
+                        color = BlueLogo,
+                        fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(bottom = 10.dp, top = 50.dp)
+                        modifier = Modifier.padding(bottom = 10.dp, top = 40.dp)
                     )
                     CoinsListView()
                 }
