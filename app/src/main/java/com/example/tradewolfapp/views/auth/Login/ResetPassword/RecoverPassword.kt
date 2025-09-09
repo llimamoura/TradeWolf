@@ -26,6 +26,10 @@ import com.example.tradewolfapp.views.components.MainButtonComponent
 import androidx.compose.foundation.background
 import com.example.tradewolfapp.views.components.OutlinedTextFieldComponent
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import com.example.tradewolfapp.R
+
 
 @Composable
 fun RecoverPassword(navController: NavController) {
@@ -37,30 +41,29 @@ fun RecoverPassword(navController: NavController) {
             .padding(horizontal = 22.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(16.dp))
-
-        
-         Row(
+        Row(
             modifier = Modifier.fillMaxWidth()
-            .padding(horizontal = 0.dp, vertical = 30.dp),
+            .padding(horizontal = 0.dp, vertical = 50.dp),
             verticalAlignment = Alignment.CenterVertically,
             
         ) {
-             Icon(
-                    imageVector = Icons.Filled.ArrowBack,
-                    contentDescription = "Back",
-                    tint = BlueLogo,
-                    modifier = Modifier
-                    .size(28.dp)
-                    .background(
-                        color = Color.Gray.copy(alpha = 0.2f),
-                        shape = RoundedCornerShape(8.dp)
-                        
-                    )
-                    .size(24.dp)
-                    .clickable {navController.popBackStack()}
+            Box(
+                modifier  = Modifier
+                .size(48.dp)
+                .background(
+                    color = Color.Gray.copy(alpha = 0.09f),
+                    shape = RoundedCornerShape(8.dp)
                 )
-            
+                .clickable { navController.popBackStack() },
+                contentAlignment  = Alignment.Center
+            ){
+                Image( 
+                painter  = painterResource(id = R.drawable.back_icon),
+                contentDescription  = "Back",
+                modifier = Modifier
+                .size(38.dp)
+            )
+            }
         }
         
 
@@ -70,7 +73,7 @@ fun RecoverPassword(navController: NavController) {
         Text(
             text = "Forgot your password?",
             color = Color.Black,
-            fontSize = 24.sp,
+            fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
@@ -81,7 +84,7 @@ fun RecoverPassword(navController: NavController) {
      
         Text(
             text = "No worries, you just need to type your email address we will send the verification code.",
-            fontSize = 15.sp,
+            fontSize = 14.sp,
             color = Color.Gray,
             textAlign = TextAlign.Center
             
@@ -97,7 +100,7 @@ fun RecoverPassword(navController: NavController) {
         )
         
 
-        Spacer(modifier = Modifier.height(46.dp))
+        Spacer(modifier = Modifier.height(66.dp))
 
         
         MainButtonComponent(

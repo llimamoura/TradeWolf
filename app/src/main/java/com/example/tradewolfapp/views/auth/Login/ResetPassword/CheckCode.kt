@@ -25,6 +25,11 @@ import com.example.tradewolfapp.ui.theme.CobaltBlue
 import com.example.tradewolfapp.ui.theme.ForgotColor
 import com.example.tradewolfapp.views.components.MainButtonComponent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import com.example.tradewolfapp.R
+
+
 
 @Composable
 fun CheckCode(navController: NavController) {
@@ -38,29 +43,32 @@ fun CheckCode(navController: NavController) {
             .padding(horizontal = 22.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(16.dp))
+        
 
           
          Row(
             modifier = Modifier.fillMaxWidth()
-            .padding(horizontal = 0.dp, vertical = 30.dp),
+            .padding(horizontal = 0.dp, vertical = 50.dp),
             verticalAlignment = Alignment.CenterVertically,
             
         ) {
-             Icon(
-                    imageVector = Icons.Filled.ArrowBack,
-                    contentDescription = "Back",
-                    tint = BlueLogo,
-                    modifier = Modifier
-                    .size(28.dp)
-                    .background(
-                        color = Color.Gray.copy(alpha = 0.2f),
-                        shape = RoundedCornerShape(8.dp)
-                        
-                    )
-                    .size(24.dp)
-                    .clickable {navController.popBackStack()}
+             Box(
+                modifier  = Modifier
+                .size(48.dp)
+                .background(
+                    color = Color.Gray.copy(alpha = 0.09f),
+                    shape = RoundedCornerShape(8.dp)
                 )
+                .clickable { navController.popBackStack() },
+                contentAlignment  = Alignment.Center
+            ){
+                Image(
+                painter  = painterResource(id = R.drawable.back_icon),
+                contentDescription  = "Back",
+                modifier = Modifier
+                .size(38.dp)
+            )
+            }
             
         }
         
@@ -94,7 +102,7 @@ fun CheckCode(navController: NavController) {
                 Box(
                     modifier = Modifier
                         .size(48.dp)
-                        .background(Color.LightGray, shape = RoundedCornerShape(20.dp)),
+                        .background(Color.LightGray.copy(alpha = 0.4f), shape = RoundedCornerShape(20.dp)),
                     contentAlignment = Alignment.Center
                 ) {
                     OutlinedTextField(
