@@ -28,6 +28,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
 import com.example.tradewolfapp.R
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
+
+
 
 
 
@@ -85,13 +91,18 @@ fun CheckCode(navController: NavController) {
         Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-            text = "Enter code that we have sent to your email \nyour...@domain.com",
+            text = buildAnnotatedString {
+                append("Enter code that we have sent to your email\nyour...")
+                withStyle(style =  SpanStyle(color = Color.Blue)){ 
+                    append("@domain.com")
+                }
+            },
             fontSize = 14.sp,
             color = Color.Gray,
             textAlign = TextAlign.Center
         )
 
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(58.dp))
 
         Row(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -102,7 +113,7 @@ fun CheckCode(navController: NavController) {
                 Box(
                     modifier = Modifier
                         .size(48.dp)
-                        .background(Color.LightGray.copy(alpha = 0.4f), shape = RoundedCornerShape(20.dp)),
+                        .background(Color.LightGray.copy(alpha = 0.6f), shape = RoundedCornerShape(20.dp)),
                     contentAlignment = Alignment.Center
                 ) {
                     OutlinedTextField(
@@ -134,17 +145,18 @@ fun CheckCode(navController: NavController) {
             }
         }
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(34.dp))
 
         Text(
             text = "Resend code",
             color = ForgotColor,
             fontSize = 15.sp,
             fontWeight = FontWeight.Medium,
+            style = TextStyle(textDecoration = TextDecoration.Underline),
             modifier = Modifier.clickable { }
         )
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(34.dp))
 
         MainButtonComponent(
             text = "Submit",

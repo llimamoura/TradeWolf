@@ -90,7 +90,7 @@ fun RecoverPassword(navController: NavController) {
             
         )
 
-        Spacer(modifier = Modifier.height(36.dp))
+        Spacer(modifier = Modifier.height(37.dp))
 
         
         OutlinedTextFieldComponent(

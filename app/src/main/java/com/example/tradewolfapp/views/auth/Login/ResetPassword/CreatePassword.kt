@@ -85,7 +85,7 @@ fun CreatePassword(navController: NavController) {
             textAlign = TextAlign.Center
         )
 
-        Spacer(modifier = Modifier.height(36.dp))
+        Spacer(modifier = Modifier.height(41.dp))
 
         OutlinedTextFieldComponent(
             value = password,
@@ -94,7 +94,7 @@ fun CreatePassword(navController: NavController) {
             isPassword = true
         )
 
-        Spacer(modifier = Modifier.height(26.dp))
+        Spacer(modifier = Modifier.height(36.dp))
 
         OutlinedTextFieldComponent(
             value = repeatPassword,
