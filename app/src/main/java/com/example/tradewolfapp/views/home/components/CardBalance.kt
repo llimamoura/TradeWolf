@@ -57,8 +57,8 @@ fun CardBalance(
             .background(
                 brush = Brush.horizontalGradient(
                     colors = listOf(
-                        Color(0xFF00224F),
-                        Color(0xFF004EB5)
+                        Color(0xFF004EB5).copy(alpha = 0.8f),
+                        Color(0xFF00224F).copy(alpha = 0.8f)
                     )
                 ),
                 shape = RoundedCornerShape(20.dp)            
@@ -72,24 +72,20 @@ fun CardBalance(
                 .padding(20.dp)
         ) {
             Text(
-                text = "Hello, Fernando!",
+                text = "My Balance",
                 color = Color.White,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
+                fontSize = 22.sp,
+                fontWeight = FontWeight.Medium,
                 modifier = Modifier.padding(top = 10.dp ,bottom = 18.dp)
             )
 
-            Text(
-                text = " My balance",
-                fontSize = 14.sp,
-                color = Color.White,
-                modifier = Modifier.padding(bottom = 18.dp)
-            )
             
+            Spacer(modifier  = Modifier.height(56.dp))
+
             Text(
                 text = coins.sumOf { it.price }.formatCryptoValue(),
                 color = Color.White,
-                fontSize = 36.sp,
+                fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(bottom = 10.dp)
             )
