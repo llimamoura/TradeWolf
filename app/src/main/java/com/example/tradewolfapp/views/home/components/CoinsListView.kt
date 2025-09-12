@@ -29,53 +29,75 @@ import com.example.tradewolfapp.ui.theme.Green
 import com.example.tradewolfapp.utils.formatCryptoValue
 import com.example.tradewolfapp.viewModel.coins.CoinsViewModel
 import com.example.tradewolfapp.views.components.CoinIcon
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import com.example.tradewolfapp.ui.theme.BlueLogo
 
 @Composable
 fun CoinsListView(
     modifier: Modifier = Modifier,
     viewModel: CoinsViewModel = viewModel(),
-
 ) {
     val coins by viewModel.coins.collectAsState()
 
-
-        LazyColumn (
-            modifier = Modifier.fillMaxSize()
-        ){
-
-            itemsIndexed(coins) { index, coin ->
-                if (index > 0) {
-                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(0.1f))
-                }
-
-                Column {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 10.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Row {
-                            CoinIcon(iconUrl = coin.icon, modifier = Modifier.size(40.dp))
-                            Spacer(modifier = Modifier.width(15.dp))
-                            Column {
-                                Text(text = coin.symbol, color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                                Text(text = coin.name, color = Color.Gray, fontSize = 14.sp)
-                            }
-                        }
-
-                        Column(
-                            horizontalAlignment = Alignment.End
-                        ) {
-                            Text(text = coin.price.formatCryptoValue(), color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 18.sp )
+    LazyColumn(
+        modifier = modifier
+        .fillMaxSize()
+        .padding(vertical = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)       
+    ) {
+        itemsIndexed(coins) { _, coin ->
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp),
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.Gray.copy(alpha = 0.3f)
+                )
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        CoinIcon(iconUrl = coin.icon, modifier = Modifier.size(40.dp))
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Column {
                             Text(
-                                text = "${coin.priceChangeH}%",
-                                color = if (coin.priceChangeH >= 0) Green else Color.Red
+                                text = coin.name,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp,
+                                color = BlueLogo
+                            )
+                            Text(
+                                text = coin.symbol,
+                                fontSize = 12.sp,
+                                color = Color.Black
                             )
                         }
+                    }
+
+                    Column(horizontalAlignment = Alignment.End) {
+                        Text(
+                            text = "$${coin.price.formatCryptoValue()}",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 16.sp,
+                            color = BlueLogo
+                        )
+                        Text(
+                            text = "${coin.priceChangeH}%",
+                            color = if (coin.priceChangeH >= 0) Green else Color.Red,
+                            fontSize = 12.sp
+                        )
                     }
                 }
             }
         }
     }
+}
 

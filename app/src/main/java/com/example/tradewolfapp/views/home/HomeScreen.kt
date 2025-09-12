@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -41,6 +42,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.tradewolfapp.R
+import androidx.compose.ui.res.painterResource
 import com.example.tradewolfapp.ui.theme.BlueLogo
 import com.example.tradewolfapp.ui.theme.DarkGray
 import com.example.tradewolfapp.utils.setTime
@@ -62,25 +64,46 @@ fun HomeScreen(
     val isSuccess by coinsViewModel.isSuccess.collectAsState()
     val error by coinsViewModel.error.collectAsState()
     val userPhoto = user?.photoUrl
-    val setTime = setTime()
     val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         coinsViewModel.loadCoins()
     }
 
-
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    
+                    Icon(
+                        painter = painterResource(id = R.drawable.logo), //trocar a logo para logohome 
+                        contentDescription = "App Logo",
+                        modifier = Modifier.size(36.dp)
+                    )
                 },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = Color.White,
-                    titleContentColor = Color.Black,
-                ),
-                navigationIcon = {
+                actions = {
+
+                    IconButton(onClick = {}){
+                        Icon(
+                            painter = painterResource(id = R.drawable.search_home ),
+                            contentDescription = "Search",
+                            tint = Color(0xFF00234F),
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
+                    
+                    Spacer(modifier = Modifier.width(16.dp))
+                    
+                    IconButton(onClick = {}) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.belldot_home),
+                            contentDescription = "Notifications",
+                            tint = Color(0xFF00234F),
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
+                    
+                    Spacer(modifier = Modifier.width(12.dp))
+                    
                     if (userPhoto != null) {
                         Image(
                             painter = rememberAsyncImagePainter(
@@ -94,28 +117,24 @@ fun HomeScreen(
                             ),
                             contentDescription = "Profile photo",
                             modifier = Modifier
-                                .padding(start = 8.dp)
-                                .size(40.dp)
+                                .padding(end = 8.dp)
+                                .size(36.dp)
                                 .clip(CircleShape)
                         )
                     } else {
-                        IconButton(onClick = { /*fallback*/ }) {
+                        IconButton(onClick = { /* fallback */ }) {
                             Icon(
                                 painter = painterResource(id = R.drawable.logo),
-                                contentDescription = "logo"
+                                contentDescription = "Default logo",
+                                tint = Color.Unspecified
                             )
                         }
                     }
                 },
-                actions = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            imageVector = Icons.Outlined.Notifications,
-                            contentDescription = "notifications",
-                            tint = Color.Black
-                        )
-                    }
-                }
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.White,
+                    titleContentColor = Color.Black
+                )
             )
         }
     ) { innerPadding ->
@@ -148,7 +167,7 @@ fun HomeScreen(
                     Text(
                         text = "Your assets",
                         color = BlueLogo,
-                        fontSize = 22.sp,
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(bottom = 10.dp, top = 40.dp)
                     )
@@ -158,7 +177,3 @@ fun HomeScreen(
         }
     }
 }
-
-
-
-
