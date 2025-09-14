@@ -13,7 +13,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tradewolfapp.ui.theme.TradeWolfAppTheme
 import com.example.tradewolfapp.views.auth.LoginScreen
+import com.example.tradewolfapp.views.auth.LoginForm
 import com.example.tradewolfapp.views.WelcomeScreen
+import com.example.tradewolfapp.views.signUp.Residency
+import com.example.tradewolfapp.views.signUp.ResidencyScreen
 import com.example.tradewolfapp.views.navigations.MainScreen
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -46,6 +49,10 @@ class MainActivity : ComponentActivity() {
 
                     composable("main") {
                         MainScreen(navController)
+                    }
+
+                    composable("residencyScreen"){
+                        ResidencyScreen(navController)
                     }
 
                 }
