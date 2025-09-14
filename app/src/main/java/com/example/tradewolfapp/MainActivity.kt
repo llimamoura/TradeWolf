@@ -15,7 +15,7 @@ import com.example.tradewolfapp.ui.theme.TradeWolfAppTheme
 import com.example.tradewolfapp.views.auth.LoginScreen
 import com.example.tradewolfapp.views.auth.LoginForm
 import com.example.tradewolfapp.views.WelcomeScreen
-import com.example.tradewolfapp.views.signUp.Residency
+import com.example.tradewolfapp.views.signUp.ResidencyForm
 import com.example.tradewolfapp.views.signUp.ResidencyScreen
 import com.example.tradewolfapp.views.navigations.MainScreen
 import com.google.firebase.Firebase
@@ -53,6 +53,10 @@ class MainActivity : ComponentActivity() {
 
                     composable("residencyScreen"){
                         ResidencyScreen(navController)
+                    }
+
+                    composable("residencyForm"){
+                        ResidencyForm(navController)
                     }
 
                 }
