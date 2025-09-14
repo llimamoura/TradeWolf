@@ -25,7 +25,7 @@ fun ResidencyScreen(
             .padding(horizontal = 22.dp, vertical = 40.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier =  Modifier.height(60.dp))
+        Spacer(modifier =  Modifier.height(80.dp))
 
         
         Text(
@@ -62,7 +62,7 @@ fun ResidencyScreen(
         MainButtonComponent(
             text = "Verify identity",
             onClick = {
-                
+                navController.navigate("residencyForm")
             },
             colorText = Color.White,
             colorStart = DeepBlue,
