@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -81,7 +82,9 @@ fun HomeScreen(
                     )
                 },
                 actions = {
-
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ){
                     IconButton(onClick = {}){
                         Icon(
                             painter = painterResource(id = R.drawable.search_home ),
@@ -91,8 +94,6 @@ fun HomeScreen(
                         )
                     }
                     
-                    Spacer(modifier = Modifier.width(16.dp))
-                    
                     IconButton(onClick = {}) {
                         Icon(
                             painter = painterResource(id = R.drawable.belldot_home),
@@ -101,8 +102,6 @@ fun HomeScreen(
                             modifier = Modifier.size(24.dp)
                         )
                     }
-                    
-                    Spacer(modifier = Modifier.width(12.dp))
                     
                     if (userPhoto != null) {
                         Image(
@@ -130,7 +129,8 @@ fun HomeScreen(
                             )
                         }
                     }
-                },
+                }
+            },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.White,
                     titleContentColor = Color.Black
