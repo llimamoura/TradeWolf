@@ -25,13 +25,15 @@ import androidx.compose.ui.res.painterResource
 import com.example.tradewolfapp.R
 import com.example.tradewolfapp.ui.theme.DeepBlue
 import com.example.tradewolfapp.ui.theme.CobaltBlue
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 
 @Composable
 fun ProfileScreen() {
-    var fullName by remember { mutableStateOf(TextFieldValue("")) }
-    var cpf by remember { mutableStateOf(TextFieldValue("")) }
-    var email by remember { mutableStateOf(TextFieldValue("")) }
-    var phoneNumber by remember { mutableStateOf(TextFieldValue("")) }
+    var fullName by remember { mutableStateOf("") }
+    var cpf by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var phoneNumber by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
@@ -42,32 +44,20 @@ fun ProfileScreen() {
                 )
             )
     ) {
+        
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(top = 150.dp)
                 .background(
-                Color.White, 
-                shape = RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)
+                    Color.White,
+                    shape = RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)
                 )
-                .padding(horizontal = 22.dp),
+                .padding(horizontal = 22.dp)
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            
-            Box(
-                modifier = Modifier
-                .size(100.dp)
-                .background(color = Color.White, CircleShape),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.circle_user),
-                    contentDescription = "Profile Image",
-                    modifier = Modifier.size(100.dp),
-                    tint = BlueLogo
-                )
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-
+            Spacer(modifier = Modifier.height(60.dp))
             Text(
                 text = "Profile",
                 fontSize = 30.sp,
@@ -83,7 +73,8 @@ fun ProfileScreen() {
             OutlinedTextField(
                 value = fullName,
                 onValueChange = { fullName = it },
-                label = { Text("Full name") },
+                label = {Text("Full name")},
+                placeholder = { Text("Nome") },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
@@ -95,7 +86,8 @@ fun ProfileScreen() {
             OutlinedTextField(
                 value = cpf,
                 onValueChange = { cpf = it },
-                label = { Text("CPF") },
+                label = {Text("CPF")},
+                placeholder = { Text("000.000.000-00") },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
@@ -107,7 +99,8 @@ fun ProfileScreen() {
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
-                label = { Text("Email") },
+                label = {Text("Email")},
+                placeholder = { Text("...@gmail.com") },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
@@ -119,22 +112,57 @@ fun ProfileScreen() {
             OutlinedTextField(
                 value = phoneNumber,
                 onValueChange = { phoneNumber = it },
-                label = { Text("Phone number") },
+                label = {Text("Phone number")},
+                placeholder = { Text("+0 (000)000-000") },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
                 shape = RoundedCornerShape(12.dp)
             )
-            
+
             Spacer(modifier = Modifier.height(60.dp))
-            
+
             MainButtonComponent(
-            text = "Log out",
-            onClick = { },
-            colorText = Color.White,
-            colorStart = DeepBlue,
-            colorEnd = CobaltBlue
+                text = "Log out",
+                onClick = { },
+                colorText = Color.White,
+                colorStart = DeepBlue,
+                colorEnd = CobaltBlue
             )
+        }
+
+        
+        Box(
+            modifier = Modifier
+                .size(100.dp)
+                .align(Alignment.TopCenter)
+                .offset(y = 95.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.circle_user),
+                contentDescription = "Profile Image",
+                modifier = Modifier
+                .size(100.dp)
+                .background(color = BlueLogo, CircleShape),
+                tint = Color.White
+            )
+
+            
+            IconButton(
+                onClick = { },
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .size(14.dp)
+                    .background(Color(0xFF5E6E7F), CircleShape)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.pen_line),
+                    contentDescription = "Edit Profile",
+                    tint = Color.White,
+                    modifier = Modifier.size(12.dp)
+                )
+            }
         }
     }
 }
