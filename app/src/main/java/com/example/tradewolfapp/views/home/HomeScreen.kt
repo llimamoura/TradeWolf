@@ -1,6 +1,5 @@
 package com.example.tradewolfapp.views.home
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -10,14 +9,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.outlined.Notifications
-import androidx.compose.material.icons.rounded.Notifications
-import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -43,11 +36,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.tradewolfapp.R
-import androidx.compose.ui.res.painterResource
 import com.example.tradewolfapp.ui.theme.BlueLogo
-import com.example.tradewolfapp.ui.theme.DarkGray
-import com.example.tradewolfapp.utils.setTime
-import com.example.tradewolfapp.viewModel.auth.LoginState
 import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModel
 import com.example.tradewolfapp.viewModel.coins.CoinsViewModel
 import com.example.tradewolfapp.views.home.components.CardBalance
