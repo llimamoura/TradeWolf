@@ -17,6 +17,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.tradewolfapp.utils.isFormValid
+import com.example.tradewolfapp.ui.theme.DarkGray
+import com.example.tradewolfapp.ui.theme.DullGray
+import androidx.compose.foundation.clickable
+
 
 @Composable
 fun MainButtonComponent(
@@ -24,19 +29,23 @@ fun MainButtonComponent(
     onClick: () -> Unit,
     colorStart: Color,
     colorEnd: Color,
-    colorText: Color
+    colorText: Color,
+    isClickable: Boolean = true
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(50.dp)
             .background(
-                brush = Brush.horizontalGradient(colors = listOf(colorStart, colorEnd)),
+                brush = if(isClickable) Brush.horizontalGradient(colors = listOf(colorStart, colorEnd)) else Brush.horizontalGradient(colors = listOf(DarkGray,DullGray)),
                 shape = RoundedCornerShape(10.dp)
+            )
+            .clickable(
+                onClick = onClick,
+                enabled = isClickable
             ),
-        onClick = onClick,
         colors = CardDefaults.cardColors(
-            containerColor = Color.Transparent
+            containerColor = Color.Transparent 
         )
     ) {
         Box(

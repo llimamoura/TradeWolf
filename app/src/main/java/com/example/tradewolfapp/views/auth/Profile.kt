@@ -198,31 +198,15 @@ fun Profile(navController: NavController) {
         Spacer(modifier = Modifier.height(40.dp))
 
        
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
-            shape = RoundedCornerShape(10.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = if (isFormValid) BlueLogo else BlueLogo.copy(alpha = 0.5f)
-            ),
-            onClick = {
-            if (isFormValid) { 
-                 navController.navigate("loginScreen") 
-                } 
-            }
-        ) {
-            Row(
-                modifier = Modifier.fillMaxSize(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "Submit",
-                    color = Color.White
-                )
-            }
-        }   
+       MainButtonComponent(
+            text = "Submit",
+            onClick = {  },
+            colorText = Color.White,
+            colorStart = DeepBlue,
+            colorEnd = CobaltBlue,
+            isClickable = isFormValid
+        )
+
       
     }
 }
