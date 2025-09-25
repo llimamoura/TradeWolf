@@ -1,21 +1,13 @@
 package com.example.tradewolfapp.views.home.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -25,14 +17,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.tradewolfapp.ui.theme.Green
+import com.example.tradewolfapp.ui.theme.BlueLogo
+import com.example.tradewolfapp.ui.theme.DeepBlue
 import com.example.tradewolfapp.utils.formatCryptoValue
 import com.example.tradewolfapp.viewModel.coins.CoinsViewModel
 import com.example.tradewolfapp.views.components.CoinIcon
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import com.example.tradewolfapp.ui.theme.BlueLogo
+import androidx.compose.foundation.background 
 
 @Composable
 fun CoinsListView(
@@ -43,9 +33,9 @@ fun CoinsListView(
 
     LazyColumn(
         modifier = modifier
-        .fillMaxSize()
-        .padding(vertical = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)       
+            .fillMaxSize()
+            .padding(vertical = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         itemsIndexed(coins) { _, coin ->
             Card(
@@ -64,40 +54,53 @@ fun CoinsListView(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        CoinIcon(iconUrl = coin.icon, modifier = Modifier.size(40.dp))
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Column {
+                    Box()
+                    {
+                        CoinIcon(
+                            iconUrl = coin.icon,
+                            modifier = Modifier
+                                .size(40.dp)
+                                .align(Alignment.CenterStart)
+                        )
+                        
+                        
+                        
+                        Column(
+                            modifier = Modifier.offset(x = 50.dp)
+                        ){
                             Text(
                                 text = coin.name,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 16.sp,
-                                color = BlueLogo
+                                color = DeepBlue
                             )
-                            Text(
-                                text = coin.symbol,
-                                fontSize = 12.sp,
-                                color = Color.Black
-                            )
+                            Box(
+                                modifier = Modifier 
+                                .background(
+                                    color = DeepBlue,
+                                    shape = RoundedCornerShape(8.dp)
+                                )
+                                .padding(horizontal = 6.dp, vertical = 3.dp),
+                            ) {
+                                Text(
+                                    text = coin.symbol,
+                                    fontSize = 12.sp,
+                                    color = Color.White,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                            
                         }
                     }
 
-                    Column(horizontalAlignment = Alignment.End) {
-                        Text(
-                            text = "$${coin.price.formatCryptoValue()}",
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 16.sp,
-                            color = BlueLogo
-                        )
-                        Text(
-                            text = "${coin.priceChangeH}%",
-                            color = if (coin.priceChangeH >= 0) Green else Color.Red,
-                            fontSize = 12.sp
-                        )
-                    }
+                    Text(
+                        text = "${coin.price.formatCryptoValue()}",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                        color = DeepBlue
+                    )
                 }
             }
         }
     }
 }
-
