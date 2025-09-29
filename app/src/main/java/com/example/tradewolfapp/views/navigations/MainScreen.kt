@@ -21,6 +21,7 @@ import com.example.tradewolfapp.views.market.MarketScreen
 import com.example.tradewolfapp.views.profile.ProfileScreen
 import com.example.tradewolfapp.views.transaction.TransactionScreen
 import com.example.tradewolfapp.views.wallets.WalletsScreen
+import com.example.tradewolfapp.views.search.SearchScreen
 
 @Composable
 fun MainScreen(rootNavController: NavController) {
@@ -63,6 +64,10 @@ fun MainScreen(rootNavController: NavController) {
             }
             composable(Screens.Profile.rout) {
                 ProfileScreen()
+            }
+            
+            composable(Screens.Search.rout){
+                SearchScreen(navController = innerNav)
             }
         }
     }

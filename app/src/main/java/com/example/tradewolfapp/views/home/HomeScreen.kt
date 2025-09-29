@@ -49,6 +49,8 @@ import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModel
 import com.example.tradewolfapp.viewModel.coins.CoinsViewModel
 import com.example.tradewolfapp.views.home.components.CardBalance
 import com.example.tradewolfapp.views.home.components.CoinsListView
+import com.example.tradewolfapp.views.navigations.Screens
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -115,7 +117,7 @@ fun HomeScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = { navController.navigate(Screens.Search.rout) }) {
                         Icon(
                             imageVector = Icons.Outlined.Notifications,
                             contentDescription = "notifications",
