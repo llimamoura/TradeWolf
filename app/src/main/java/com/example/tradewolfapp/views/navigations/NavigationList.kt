@@ -24,7 +24,7 @@ fun navigationItems(): List<NavigationItem> {
             isCustom = true
         ),
         NavigationItem(
-            icon = painterResource(id = R.drawable.person_home),
+            icon = painterResource(id = R.drawable.hourglass_home),
             route = Screens.Wallets.rout
         ),
         NavigationItem(
