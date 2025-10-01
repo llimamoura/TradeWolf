@@ -53,12 +53,16 @@ import com.google.firebase.auth.FirebaseUser
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import com.example.tradewolfapp.R
 
 @Composable
 fun LoginForm(
@@ -99,32 +103,31 @@ fun LoginForm(
         .fillMaxSize()
         .padding(horizontal = 10.dp), 
         horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        
-        Spacer(modifier = Modifier.height(16.dp))
-        
+    ) { 
         Row(
             modifier = Modifier.fillMaxWidth()
-            .padding(horizontal = 0.dp, vertical = 30.dp),
+            .padding( vertical = 50.dp),
             verticalAlignment = Alignment.CenterVertically,
             
         ) {
-             Icon(
-                    imageVector = Icons.Filled.ArrowBack,
-                    contentDescription = "Back",
-                    tint = BlueLogo,
-                    modifier = Modifier
-                    .background(
-                        color = Color.Gray.copy(alpha = 0.2f)
-                        
-                    )
-                    .size(24.dp)
-                    .clickable {navController.popBackStack()}
+            Box(
+                modifier  = Modifier
+                .size(48.dp)
+                .background(
+                    color = Color.Gray.copy(alpha = 0.09f),
+                    shape = RoundedCornerShape(8.dp)
                 )
-            
+                .clickable { navController.popBackStack() },
+                contentAlignment  = Alignment.Center
+            ){
+                Image(
+                painter  = painterResource(id = R.drawable.back_icon),
+                contentDescription  = "Back",
+                modifier = Modifier
+                .size(38.dp)
+            )
+            }
         }
-        
-        Spacer(modifier  = Modifier.height(40.dp))
 
         Text(
             text = "Let´s log you in",
@@ -137,7 +140,11 @@ fun LoginForm(
         
 
         Spacer(modifier = Modifier.height(30.dp))
-
+        
+        Column(
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ){
+        
         OutlinedTextFieldComponent(
             value = email,
             onValueChange = { email = it },
@@ -148,8 +155,6 @@ fun LoginForm(
             )
         )
 
-        Spacer(modifier = Modifier.height(26.dp))
-
         OutlinedTextFieldComponent(
             value = password,
             onValueChange = { password = it },
@@ -157,8 +162,6 @@ fun LoginForm(
             isPassword = true,
             modifier = Modifier.focusRequester(passwordFocusRequest)
         )
-
-        Spacer(modifier = Modifier.height(20.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -176,8 +179,6 @@ fun LoginForm(
             )
         }
 
-        Spacer(modifier = Modifier.height(20.dp))
-
         MainButtonComponent(
             text = "Sing in",
             onClick = { onLogin(AuthModel(email, password)) },
@@ -185,6 +186,8 @@ fun LoginForm(
             colorStart = DeepBlue,
             colorEnd = CobaltBlue
         )
+        }
+        
 
 
         Spacer(modifier = Modifier.height(25.dp))
