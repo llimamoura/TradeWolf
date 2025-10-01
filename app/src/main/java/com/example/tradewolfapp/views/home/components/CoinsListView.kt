@@ -35,14 +35,14 @@ fun CoinsListView(
         modifier = modifier
             .fillMaxSize()
             .padding(vertical = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         itemsIndexed(coins) { _, coin ->
             Card(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .size(width = 380.dp , height = 75.dp)
                     .padding(horizontal = 8.dp),
-                shape = RoundedCornerShape(12.dp),
+                shape = RoundedCornerShape(16.dp),
                 colors = CardDefaults.cardColors(
                     containerColor = Color.Gray.copy(alpha = 0.3f)
                 )
@@ -71,7 +71,7 @@ fun CoinsListView(
                             Text(
                                 text = coin.name,
                                 fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp,
+                                fontSize = 14.sp,
                                 color = DeepBlue
                             )
                             Box(
@@ -96,7 +96,7 @@ fun CoinsListView(
                     Text(
                         text = "${coin.price.formatCryptoValue()}",
                         fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp,
+                        fontSize = 18.sp,
                         color = DeepBlue
                     )
                 }

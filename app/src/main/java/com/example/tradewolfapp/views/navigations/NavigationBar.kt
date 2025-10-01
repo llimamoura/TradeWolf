@@ -63,6 +63,7 @@ fun NavigationBar(
                         }
                     },
                     colors = NavigationBarItemDefaults.colors(
+                        selectedIconColor = Color.Blue.copy(alpha = 0.5f),
                         unselectedIconColor = Color(0xFF00234F),
                         indicatorColor = Color.Transparent
                     )
@@ -87,6 +88,7 @@ fun NavigationBar(
                         )
                     },
                     colors = NavigationBarItemDefaults.colors(
+                        selectedIconColor = Color.Blue.copy(alpha = 0.5f),
                         unselectedIconColor = Color(0xFF00234F),
                         indicatorColor = Color.Transparent
                     )
