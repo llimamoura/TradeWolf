@@ -75,7 +75,7 @@ fun CardBalance(
                 text = "My Balance",
                 color = Color.White,
                 fontSize = 22.sp,
-                fontWeight = FontWeight.Medium,
+                fontWeight = FontWeight.ExtraBold,
                 modifier = Modifier.padding(top = 10.dp ,bottom = 18.dp)
             )
 
@@ -86,7 +86,7 @@ fun CardBalance(
                 text = coins.sumOf { it.price }.formatCryptoValue(),
                 color = Color.White,
                 fontSize = 32.sp,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.ExtraBold,
                 modifier = Modifier.padding(bottom = 10.dp)
             )
         }

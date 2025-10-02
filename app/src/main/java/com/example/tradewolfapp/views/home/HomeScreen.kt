@@ -157,7 +157,7 @@ fun HomeScreen(
                         text = "Your assets",
                         color = BlueLogo,
                         fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.ExtraBold,
                         modifier = Modifier.padding(bottom = 10.dp, top = 40.dp)
                     )
                     CoinsListView()
