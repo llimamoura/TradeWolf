@@ -74,7 +74,7 @@ fun RecoverPassword(navController: NavController) {
             text = "Forgot your password?",
             color = Color.Black,
             fontSize = 30.sp,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.ExtraBold,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
         )

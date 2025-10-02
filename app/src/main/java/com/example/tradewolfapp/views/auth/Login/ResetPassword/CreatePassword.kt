@@ -42,7 +42,7 @@ fun CreatePassword(navController: NavController) {
 
          Row(
             modifier = Modifier.fillMaxWidth()
-            .padding(horizontal = 0.dp, vertical = 50.dp),
+            .padding(vertical = 50.dp),
             verticalAlignment = Alignment.CenterVertically,
             
         ) {
@@ -70,7 +70,7 @@ fun CreatePassword(navController: NavController) {
         Text(
             text = "Create password",
             color = Color.Black,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.ExtraBold,
             fontSize = 30.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
@@ -82,6 +82,7 @@ fun CreatePassword(navController: NavController) {
             text = "Create your new password to login",
             fontSize = 14.sp,
             color = Color.Gray,
+            fontWeight = FontWeight.Medium,
             textAlign = TextAlign.Center
         )
 

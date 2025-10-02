@@ -85,7 +85,7 @@ fun CheckCode(navController: NavController) {
             text = "Verify Code",
             color = Color.Black,
             fontSize = 30.sp,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.ExtraBold
         )
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -93,7 +93,7 @@ fun CheckCode(navController: NavController) {
         Text(
             text = buildAnnotatedString {
                 append("Enter code that we have sent to your email\nyour...")
-                withStyle(style =  SpanStyle(color = Color.Blue)){ 
+                withStyle(style =  SpanStyle(color = BlueLogo, fontWeight = FontWeight.Medium)){ 
                     append("@domain.com")
                 }
             },
@@ -149,7 +149,7 @@ fun CheckCode(navController: NavController) {
 
         Text(
             text = "Resend code",
-            color = ForgotColor,
+            color = BlueLogo,
             fontSize = 15.sp,
             fontWeight = FontWeight.Medium,
             style = TextStyle(textDecoration = TextDecoration.Underline),
