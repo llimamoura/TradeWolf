@@ -70,23 +70,24 @@ fun CoinsListView(
                         ){
                             Text(
                                 text = coin.name,
-                                fontWeight = FontWeight.Bold,
+                                fontWeight = FontWeight.ExtraBold,
                                 fontSize = 14.sp,
                                 color = DeepBlue
                             )
                             Box(
-                                modifier = Modifier 
-                                .background(
-                                    color = DeepBlue,
-                                    shape = RoundedCornerShape(8.dp)
-                                )
-                                .padding(horizontal = 6.dp, vertical = 3.dp),
+                                modifier = Modifier
+                                    .size(height = 20.dp ,  width = 30.dp)
+                                    .background(
+                                        color = DeepBlue,
+                                        shape = RoundedCornerShape(6.dp)
+                                    ),
+                                contentAlignment = Alignment.Center
                             ) {
                                 Text(
                                     text = coin.symbol,
-                                    fontSize = 12.sp,
+                                    fontSize = 11.sp,
                                     color = Color.White,
-                                    fontWeight = FontWeight.Bold
+                                    fontWeight = FontWeight.ExtraBold
                                 )
                             }
                             
@@ -95,7 +96,7 @@ fun CoinsListView(
 
                     Text(
                         text = "${coin.price.formatCryptoValue()}",
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.ExtraBold,
                         fontSize = 18.sp,
                         color = DeepBlue
                     )
