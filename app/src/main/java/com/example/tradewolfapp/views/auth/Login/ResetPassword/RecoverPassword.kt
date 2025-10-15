@@ -104,8 +104,8 @@ fun RecoverPassword(navController: NavController) {
 
         
         MainButtonComponent(
-            text = "Sign in",
-            onClick = { navController.navigate("checkcode") },
+            text = "Submit",
+            onClick = {navController.navigate("checkcode") },
             colorText = Color.White,
             colorStart = DeepBlue,
             colorEnd = CobaltBlue

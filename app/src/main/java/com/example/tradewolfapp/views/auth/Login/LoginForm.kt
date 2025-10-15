@@ -19,6 +19,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -50,6 +51,19 @@ import com.example.tradewolfapp.views.components.OutlinedTextFieldComponent
 import com.example.tradewolfapp.views.components.TextDivider
 import com.google.firebase.auth.FirebaseUser
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import com.example.tradewolfapp.R
+
 @Composable
 fun LoginForm(
     onLogin: (AuthModel) -> Unit,
@@ -65,8 +79,9 @@ fun LoginForm(
     var rememberUser by remember { mutableStateOf(false) }
     val loginState by loginWithGoogleViewModel.loginState.collectAsState()
     val user by loginWithGoogleViewModel.user.collectAsState()
-
     val context = LocalContext.current
+
+    val passwordFocusRequest  = remember { FocusRequester() }
 
     LaunchedEffect(loginState) {
         when (loginState) {
@@ -84,28 +99,40 @@ fun LoginForm(
     }
 
     Column(
-        modifier = Modifier.fillMaxWidth()
-       
-        
-    ) {
-        
-        IconButton(
-            onClick = { navController.popBackStack() }
+        modifier = Modifier
+        .fillMaxSize()
+        .padding(horizontal = 10.dp), 
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) { 
+        Row(
+            modifier = Modifier.fillMaxWidth()
+            .padding( vertical = 50.dp),
+            verticalAlignment = Alignment.CenterVertically,
             
         ) {
-        Icon(
-            imageVector = Icons.Filled.ArrowBack,
-            contentDescription = "Back",
-            modifier = Modifier.size(24.dp),
-            tint = Color.Black
+            Box(
+                modifier  = Modifier
+                .size(48.dp)
+                .background(
+                    color = Color.Gray.copy(alpha = 0.09f),
+                    shape = RoundedCornerShape(8.dp)
+                )
+                .clickable { navController.popBackStack() },
+                contentAlignment  = Alignment.Center
+            ){
+                Image(
+                painter  = painterResource(id = R.drawable.back_icon),
+                contentDescription  = "Back",
+                modifier = Modifier
+                .size(38.dp)
             )
+            }
         }
 
-            
         Text(
             text = "Let´s log you in",
              fontSize = 30.sp,
-            fontWeight = FontWeight.Medium,
+            fontWeight = FontWeight.Bold,
             color = Color.Black,
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center
@@ -113,23 +140,28 @@ fun LoginForm(
         
 
         Spacer(modifier = Modifier.height(30.dp))
-
+        
+        Column(
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ){
+        
         OutlinedTextFieldComponent(
             value = email,
             onValueChange = { email = it },
-            label = "Email"
+            label = "Email",
+            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
+            keyboardActions = KeyboardActions(
+                onNext = { passwordFocusRequest.requestFocus() }
+            )
         )
-
-        Spacer(modifier = Modifier.height(15.dp))
 
         OutlinedTextFieldComponent(
             value = password,
             onValueChange = { password = it },
             label = "Password",
-            isPassword = true
+            isPassword = true,
+            modifier = Modifier.focusRequester(passwordFocusRequest)
         )
-
-        Spacer(modifier = Modifier.height(20.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -139,15 +171,13 @@ fun LoginForm(
             Text(
                 text = "Reset password",
                 color = ForgotColor,
-                fontSize = 15.sp,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier.clickable {
                     navController.navigate("recoverPassword")
                 }
             )
         }
-
-        Spacer(modifier = Modifier.height(20.dp))
 
         MainButtonComponent(
             text = "Sing in",
@@ -156,6 +186,9 @@ fun LoginForm(
             colorStart = DeepBlue,
             colorEnd = CobaltBlue
         )
+        }
+        
+
 
         Spacer(modifier = Modifier.height(25.dp))
 
@@ -180,10 +213,8 @@ fun LoginForm(
             Text(
                 text = "Sign up",
                 color = BlueLogo,
-                fontWeight = FontWeight.Medium,
-                modifier = Modifier.clickable {
-                    navController.navigate("residencyScreen")
-                }
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.clickable {}
             )
         }
     }

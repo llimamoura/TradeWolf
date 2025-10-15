@@ -145,7 +145,13 @@ fun CheckCode(navController: NavController) {
             }
         }
 
-        Spacer(modifier = Modifier.height(34.dp))
+        MainButtonComponent(
+            text = "Submit",
+            onClick = {navController.navigate("createpassword") },
+            colorText = Color.White,
+            colorStart = DeepBlue,
+            colorEnd = CobaltBlue
+        )
 
         Text(
             text = "Resend code",
