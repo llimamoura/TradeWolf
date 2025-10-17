@@ -54,7 +54,7 @@ fun CheckCode(navController: NavController) {
           
          Row(
             modifier = Modifier.fillMaxWidth()
-            .padding(horizontal = 0.dp, vertical = 50.dp),
+            .padding( vertical = 50.dp),
             verticalAlignment = Alignment.CenterVertically,
             
         ) {
@@ -102,7 +102,7 @@ fun CheckCode(navController: NavController) {
             textAlign = TextAlign.Center
         )
 
-        Spacer(modifier = Modifier.height(58.dp))
+        Spacer(modifier = Modifier.height(38.dp))
 
         Row(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -146,7 +146,7 @@ fun CheckCode(navController: NavController) {
         }
 
         Spacer(modifier = Modifier.height(34.dp))
-
+        
         Text(
             text = "Resend code",
             color = BlueLogo,

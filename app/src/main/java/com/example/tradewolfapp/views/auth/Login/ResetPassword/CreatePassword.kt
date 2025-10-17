@@ -8,7 +8,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
+import com.example.tradewolfapp.ui.theme.DeepBlue
+import com.example.tradewolfapp.ui.theme.CobaltBlue
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Text
@@ -19,11 +24,11 @@ import com.example.tradewolfapp.ui.theme.CobaltBlue
 import com.example.tradewolfapp.views.components.MainButtonComponent
 import com.example.tradewolfapp.views.components.OutlinedTextFieldComponent
 import androidx.compose.foundation.background
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
 import com.example.tradewolfapp.R
+import androidx.compose.ui.text.style.TextAlign
 
 
 @Composable
@@ -119,7 +124,7 @@ fun CreatePassword(navController: NavController) {
 
         MainButtonComponent(
             text = "Submit",
-            onClick = { },
+            onClick = {},
             colorText = Color.White,
             colorStart = DeepBlue,
             colorEnd = CobaltBlue

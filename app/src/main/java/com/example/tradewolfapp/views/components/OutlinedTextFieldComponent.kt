@@ -14,6 +14,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 
 
 @Composable
@@ -21,7 +23,11 @@ fun OutlinedTextFieldComponent(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
-    isPassword: Boolean = false
+    isPassword: Boolean = false,
+    modifier : Modifier = Modifier,
+    keyboardOptions : KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions : KeyboardActions = KeyboardActions.Default
+    
 ) {
     var passwordVisible by remember { mutableStateOf(false) }
 
@@ -30,11 +36,13 @@ fun OutlinedTextFieldComponent(
         onValueChange = onValueChange,
         label = { Text(label) },
         singleLine = true,
-        modifier = Modifier
+        modifier = modifier
         .fillMaxWidth()
         .height(60.dp),
-        textStyle = TextStyle(fontSize = 16.sp),
-        shape = MaterialTheme.shapes.medium, 
+        textStyle = TextStyle(fontSize = 15.sp),
+        shape = MaterialTheme.shapes.medium,
+        keyboardOptions = keyboardOptions, 
+        keyboardActions = keyboardActions,  
         visualTransformation = if (isPassword && !passwordVisible) {
             PasswordVisualTransformation()
         } else {
@@ -49,6 +57,6 @@ fun OutlinedTextFieldComponent(
                     Icon(imageVector = image, contentDescription = null)
                 }
             }
-        }
+        },
     )
 }

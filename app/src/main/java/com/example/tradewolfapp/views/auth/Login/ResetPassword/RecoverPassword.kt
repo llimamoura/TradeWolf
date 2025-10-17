@@ -43,7 +43,7 @@ fun RecoverPassword(navController: NavController) {
     ) {
         Row(
             modifier = Modifier.fillMaxWidth()
-            .padding(horizontal = 0.dp, vertical = 50.dp),
+            .padding( vertical = 50.dp),
             verticalAlignment = Alignment.CenterVertically,
             
         ) {
@@ -104,8 +104,8 @@ fun RecoverPassword(navController: NavController) {
 
         
         MainButtonComponent(
-            text = "Sign in",
-            onClick = { navController.navigate("checkcode") },
+            text = "Sing in",
+            onClick = {navController.navigate("checkcode") },
             colorText = Color.White,
             colorStart = DeepBlue,
             colorEnd = CobaltBlue
