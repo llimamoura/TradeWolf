@@ -77,9 +77,6 @@ fun CheckCode(navController: NavController) {
             }
             
         }
-        
-
-        Spacer(modifier = Modifier.height(40.dp))
 
         Text(
             text = "Verify Code",
