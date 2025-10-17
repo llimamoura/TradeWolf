@@ -29,6 +29,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
 import com.example.tradewolfapp.R
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.ui.text.input.ImeAction
 
 
 @Composable
@@ -36,7 +41,8 @@ fun CreatePassword(navController: NavController) {
     var password by remember { mutableStateOf("") }
     var repeatPassword by remember { mutableStateOf("") }
     val passwordsMatch = password == repeatPassword
-
+    val passwordFocusRequest  = remember { FocusRequester() }
+    
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -70,8 +76,7 @@ fun CreatePassword(navController: NavController) {
             }
             
         }
-        Spacer(modifier = Modifier.height(40.dp))
-
+        
         Text(
             text = "Create password",
             color = Color.Black,
@@ -91,13 +96,17 @@ fun CreatePassword(navController: NavController) {
             textAlign = TextAlign.Center
         )
 
-        Spacer(modifier = Modifier.height(41.dp))
+        Spacer(modifier = Modifier.height(40.dp))
 
         OutlinedTextFieldComponent(
             value = password,
             onValueChange = { password = it },
             label = "Password",
-            isPassword = true
+            isPassword = true,
+            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
+            keyboardActions = KeyboardActions(
+                onNext = { passwordFocusRequest.requestFocus() }
+            )
         )
 
         Spacer(modifier = Modifier.height(36.dp))
@@ -106,7 +115,8 @@ fun CreatePassword(navController: NavController) {
             value = repeatPassword,
             onValueChange = { repeatPassword = it },
             label = "Repeat Password",
-            isPassword = true
+            isPassword = true,
+            modifier =  Modifier.focusRequester(passwordFocusRequest)
         )
 
         if (repeatPassword.isNotEmpty() && !passwordsMatch) {
