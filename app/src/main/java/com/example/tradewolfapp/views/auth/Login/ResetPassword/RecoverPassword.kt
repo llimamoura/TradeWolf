@@ -65,11 +65,7 @@ fun RecoverPassword(navController: NavController) {
             )
             }
         }
-        
-
-        Spacer(modifier = Modifier.height(40.dp))
-
-     
+    
         Text(
             text = "Forgot your password?",
             color = Color.Black,
