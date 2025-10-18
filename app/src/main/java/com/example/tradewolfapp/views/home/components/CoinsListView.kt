@@ -23,6 +23,7 @@ import com.example.tradewolfapp.utils.formatCryptoValue
 import com.example.tradewolfapp.viewModel.coins.CoinsViewModel
 import com.example.tradewolfapp.views.components.CoinIcon
 import androidx.compose.foundation.background 
+import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun CoinsListView(
@@ -76,7 +77,7 @@ fun CoinsListView(
                             )
                             Box(
                                 modifier = Modifier
-                                    .size(height = 20.dp ,  width = 30.dp)
+                                    .size(height = 20.dp,width = 30.dp)
                                     .background(
                                         color = DeepBlue,
                                         shape = RoundedCornerShape(6.dp)
@@ -87,7 +88,10 @@ fun CoinsListView(
                                     text = coin.symbol,
                                     fontSize = 11.sp,
                                     color = Color.White,
-                                    fontWeight = FontWeight.ExtraBold
+                                    fontWeight = FontWeight.Bold,
+                                    modifier  = Modifier.fillMaxWidth(),
+                                    textAlign = TextAlign.Center,
+                                    lineHeight = 20.sp
                                 )
                             }
                             
