@@ -1,29 +1,33 @@
 package com.example.tradewolfapp.views.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+
 
 @Composable
 fun OutlinedTextFieldComponent(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
-    isPassword: Boolean = false
+    isPassword: Boolean = false,
+    modifier : Modifier = Modifier,
+    keyboardOptions : KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions : KeyboardActions = KeyboardActions.Default
+    
 ) {
     var passwordVisible by remember { mutableStateOf(false) }
 
@@ -32,21 +36,27 @@ fun OutlinedTextFieldComponent(
         onValueChange = onValueChange,
         label = { Text(label) },
         singleLine = true,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(60.dp),
-        textStyle = TextStyle(fontSize = 16.sp),
-        shape = RoundedCornerShape(16.dp),
+        modifier = modifier
+        .fillMaxWidth()
+        .height(60.dp),
+        textStyle = TextStyle(fontSize = 15.sp),
+        shape = MaterialTheme.shapes.medium,
+        keyboardOptions = keyboardOptions, 
+        keyboardActions = keyboardActions,  
         visualTransformation = if (isPassword && !passwordVisible) {
             PasswordVisualTransformation()
-        } else VisualTransformation.None,
+        } else {
+            VisualTransformation.None
+        },
         trailingIcon = {
             if (isPassword) {
-                val image = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
+                val image = if (passwordVisible)
+                    Icons.Filled.Visibility
+                else Icons.Filled.VisibilityOff
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
                     Icon(imageVector = image, contentDescription = null)
                 }
             }
-        }
+        },
     )
 }
