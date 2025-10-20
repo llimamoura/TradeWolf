@@ -180,7 +180,7 @@ fun LoginForm(
         }
 
         MainButtonComponent(
-            text = "Sing in",
+            text = "Sign in",
             onClick = { onLogin(AuthModel(email, password)) },
             colorText = Color.White,
             colorStart = DeepBlue,
