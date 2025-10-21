@@ -48,11 +48,11 @@ fun ResidencyForm(navController: NavController) {
             .padding(horizontal = 22.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(16.dp))
+        
 
         Row(
             modifier = Modifier.fillMaxWidth()
-            .padding(horizontal = 0.dp, vertical = 20.dp),
+            .padding( vertical = 50.dp),
             verticalAlignment = Alignment.CenterVertically,
             
         ) {
@@ -74,9 +74,6 @@ fun ResidencyForm(navController: NavController) {
                 )
             }
         }
-
-
-        Spacer(modifier = Modifier.height(40.dp))
 
         Text(
             text = "Proof of Residency",
