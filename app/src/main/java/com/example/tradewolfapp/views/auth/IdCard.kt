@@ -108,7 +108,7 @@ fun IdCard(navController: NavController) {
                 text = "Photo ID Card",
                 fontSize = 30.sp,
                 color = Color.Black,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.ExtraBold,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
