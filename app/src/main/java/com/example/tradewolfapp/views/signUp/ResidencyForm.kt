@@ -79,7 +79,7 @@ fun ResidencyForm(navController: NavController) {
             text = "Proof of Residency",
             color = Color.Black,
             fontSize = 30.sp,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.ExtraBold,
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center
         )
