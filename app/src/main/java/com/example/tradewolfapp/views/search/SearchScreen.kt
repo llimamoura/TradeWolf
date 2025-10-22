@@ -1,5 +1,6 @@
 package com.example.tradewolfapp.views.search
 
+
 import androidx.navigation.NavController
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -8,8 +9,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -23,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tradewolfapp.R
-import com.example.tradewolfapp.model.CoinModel
 import com.example.tradewolfapp.ui.theme.CobaltBlue
 import com.example.tradewolfapp.ui.theme.DeepBlue
 import com.example.tradewolfapp.ui.theme.DullGray
@@ -31,10 +29,9 @@ import com.example.tradewolfapp.ui.theme.SoftBlue
 import com.example.tradewolfapp.utils.formatCryptoValue
 import com.example.tradewolfapp.viewModel.coins.CoinsViewModel
 import com.example.tradewolfapp.views.components.CoinIcon
+import com.example.tradewolfapp.views.search.components.CustomSearchBar
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
 fun SearchScreen(
     navController: NavController,
     viewModel: CoinsViewModel = viewModel()
@@ -113,7 +110,7 @@ fun SearchScreen(
         Spacer(modifier = Modifier.height(66.dp))
 
         
-        DockedSearchBar(
+        CustomSearchBar(
             query = query,
             onQueryChange = { newQuery ->
                 viewModel.updateQuery(newQuery)
@@ -124,10 +121,7 @@ fun SearchScreen(
             onActiveChange = { active = it },
             modifier = Modifier.fillMaxWidth(),
             placeholder = {
-                Text("Search", color = Color.Gray , fontWeight = FontWeight.ExtraBold)
-            },
-            leadingIcon = {
-                Icon(Icons.Default.Search, contentDescription = "Search")
+                Text("Search", color = Color.Gray, fontWeight = FontWeight.ExtraBold)
             }
         ) {
             if (results.isNotEmpty()) {
@@ -155,14 +149,14 @@ fun SearchScreen(
                                     
                                 Text(
                                     text = "${coin.name} (${coin.symbol})",
-                                    fontWeight = FontWeight.Bold,
+                                    fontWeight = FontWeight.ExtraBold,
                                     color = Color.White,
                                     fontSize = 14.sp
                                 )
                                     
                                 Text(
                                     text = coin.price.formatCryptoValue(),
-                                    fontWeight = FontWeight.Bold,
+                                    fontWeight = FontWeight.ExtraBold,
                                     color = Color.White,
                                     fontSize = 14.sp
                                 )
