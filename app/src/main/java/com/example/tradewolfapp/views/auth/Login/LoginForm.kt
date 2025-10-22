@@ -132,9 +132,9 @@ fun LoginForm(
         }
 
         Text(
-            text = "Let´s log you in",
+            text = "Let's log you in",
              fontSize = 30.sp,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.ExtraBold,
             color = Color.Black,
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center
