@@ -63,6 +63,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
 import com.example.tradewolfapp.R
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.graphics.Brush
 
 @Composable
 fun LoginForm(
@@ -170,9 +172,11 @@ fun LoginForm(
         ) {
             Text(
                 text = "Reset password",
-                color = ForgotColor,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Medium,
+                style = TextStyle(
+                    brush = Brush.horizontalGradient(colors = listOf(DeepBlue, CobaltBlue)),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Medium,
+                ),
                 modifier = Modifier.clickable {
                     navController.navigate("recoverPassword")
                 }
@@ -209,7 +213,7 @@ fun LoginForm(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
-            Text(text = "Don’t have an account? ", color = Color.Black)
+            Text(text = "Don’t have an account? ", color = Color.Black.copy(alpha = 0.8f))
             Text(
                 text = "Sign up",
                 color = BlueLogo,

@@ -55,7 +55,7 @@ fun GoogleSignInButtonComponent(
                 text = "Sign in with Google",
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Medium,
-                color = Color.Black
+                color = Color.Black.copy(alpha = 0.5f)
             )
         }
     }
