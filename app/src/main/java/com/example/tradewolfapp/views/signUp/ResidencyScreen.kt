@@ -29,7 +29,7 @@ fun ResidencyScreen(
 
         
         Text(
-            text = "Let´s Verify Your",
+            text = "Let's Verify Your",
             color = Color.Black,
             fontSize = 30.sp,
             fontWeight = FontWeight.ExtraBold,
@@ -47,7 +47,7 @@ fun ResidencyScreen(
 
         
         
-        Spacer(modifier = Modifier.height(18.dp))
+        Spacer(modifier = Modifier.height(22.dp))
 
         
         Text(
