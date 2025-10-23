@@ -21,4 +21,4 @@ val Green = Color(0xFF038B02)
 val DeepBlue = Color(0xFF00224F)
 val CobaltBlue = Color(0xFF004EB5)
 val SoftBlue = Color(0xFF546B89)
-
+val OceanBlue = Color(0xFF007FB5)

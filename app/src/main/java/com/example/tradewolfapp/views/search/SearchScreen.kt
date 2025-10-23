@@ -121,7 +121,7 @@ fun SearchScreen(
             onActiveChange = { active = it },
             modifier = Modifier.fillMaxWidth(),
             placeholder = {
-                Text("Search", color = Color.Gray, fontWeight = FontWeight.ExtraBold)
+                Text("Search", color = Color.Gray.copy(alpha = 0.8f), fontWeight = FontWeight.Bold)
             }
         ) {
             if (results.isNotEmpty()) {
@@ -142,21 +142,23 @@ fun SearchScreen(
                                     .fillMaxWidth()
                                     .height(60.dp)
                                     .padding(horizontal = 16.dp),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.SpaceBetween
+                                verticalAlignment = Alignment.CenterVertically
                             ) {
                                 CoinIcon(iconUrl = coin.icon, modifier = Modifier.size(28.dp))
-                                    
+                                
+                                Spacer(modifier = Modifier.width(12.dp))
+                                
                                 Text(
                                     text = "${coin.name} (${coin.symbol})",
                                     fontWeight = FontWeight.ExtraBold,
                                     color = Color.White,
-                                    fontSize = 14.sp
+                                    fontSize = 14.sp,
+                                    modifier = Modifier.weight(1f)
                                 )
-                                    
+                                  
                                 Text(
                                     text = coin.price.formatCryptoValue(),
-                                    fontWeight = FontWeight.ExtraBold,
+                                    fontWeight = FontWeight.Bold,
                                     color = Color.White,
                                     fontSize = 14.sp
                                 )
