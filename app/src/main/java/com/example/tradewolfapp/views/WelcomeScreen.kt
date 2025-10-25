@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,16 +29,37 @@ import com.example.tradewolfapp.ui.theme.BlueLogo
 import com.example.tradewolfapp.ui.theme.DeepBlue
 import com.example.tradewolfapp.ui.theme.CobaltBlue
 import com.example.tradewolfapp.views.components.MainButtonComponent
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.text.TextStyle
+import com.example.tradewolfapp.ui.theme.Poppins
 
 @Composable
 fun WelcomeScreen(navController: NavController) {
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(BlueLogo),
+            .background(BlueLogo)
+    ) {
+        
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(400.dp) 
+                .align(Alignment.TopCenter)
+                .background(
+                    brush = Brush.radialGradient(
+                        listOf(Color(0xFF2be4dc),BlueLogo)
+                    )
+                )
+        )
+    
+    
+    Column(
+        modifier = Modifier
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Spacer(modifier = Modifier.height(150.dp))
+        Spacer(modifier = Modifier.height(100.dp))
         Image(
             painter = painterResource(id = R.drawable.logo),
             contentDescription = "logo",
@@ -53,25 +75,34 @@ fun WelcomeScreen(navController: NavController) {
         ) {
             Text(
                 text = "Welcome to,",
+                style = TextStyle(
+                    fontFamily = Poppins,
+                    fontSize = 20.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Medium
 
-                fontSize = 20.sp,
-                color = Color.White,
-                fontWeight = FontWeight.Medium
+                )
             )
+            
             Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text = "TradeWolf",
-                fontSize = 40.sp,
-                color = Color.White,
-                letterSpacing = 0.1.em,
-                fontWeight = FontWeight.Bold
+                style = TextStyle(
+                    fontFamily = Poppins,
+                    fontSize = 37.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold
+                )
             )
             Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text = "Hunt for the best prices on your favorite Blockchain",
-                fontSize = 20.sp,
-                color = Color.White,
-                fontWeight = FontWeight.Medium
+                style = TextStyle(
+                    fontFamily = Poppins,
+                    fontSize = 14.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Light
+                )
             )
             Spacer(modifier = Modifier.height(70.dp))
 
@@ -84,6 +115,7 @@ fun WelcomeScreen(navController: NavController) {
             )
 
             Spacer(modifier = Modifier.height(20.dp))
+        }
         }
     }
 }
