@@ -74,7 +74,6 @@ fun CreatePassword(navController: NavController) {
                 .size(38.dp)
             )
             }
-            
         }
         
         Text(

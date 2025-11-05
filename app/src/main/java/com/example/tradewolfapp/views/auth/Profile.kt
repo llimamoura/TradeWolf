@@ -9,6 +9,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
+import com.example.tradewolfapp.views.components.OutlinedTextFieldComponent
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -45,31 +46,18 @@ fun Profile(navController: NavController) {
 
     val isFormValid = isFormValid(fullName,cpf,email,phoneNumber)
      
-    val textFieldColors = TextFieldDefaults.colors(
-            cursorColor = BlueLogo,
-            focusedIndicatorColor = BlueLogo,
-            unfocusedIndicatorColor = BlueLogo.copy(alpha = 0.5f),
-            focusedLabelColor = BlueLogo,
-            unfocusedLabelColor = BlueLogo,
-            focusedContainerColor = Color.Transparent,
-            unfocusedContainerColor = Color.Transparent
-        )
-
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 22.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(16.dp))
-
         Row(
             modifier = Modifier.fillMaxWidth()
-            .padding(horizontal = 0.dp, vertical = 20.dp),
+            .padding(vertical = 50.dp),
             verticalAlignment = Alignment.CenterVertically,
-
         ) {
-             Box(
+            Box(
                 modifier  = Modifier
                 .size(48.dp)
                 .background(
@@ -84,11 +72,9 @@ fun Profile(navController: NavController) {
                 contentDescription  = "Back",
                 modifier = Modifier
                 .size(38.dp)
-                )
+            )
             }
-        }    
-
-        Spacer(modifier = Modifier.height(20.dp))
+        }
 
         Text(
             text = "Fill Your Profile",
@@ -99,9 +85,8 @@ fun Profile(navController: NavController) {
             modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
-        
         Text(
             text = "Don't worry, you can always change it later",
             fontSize = 14.sp,
@@ -111,7 +96,7 @@ fun Profile(navController: NavController) {
             modifier = Modifier.fillMaxWidth()
         )
         
-        Spacer(modifier = Modifier.height(38.dp))
+        Spacer(modifier = Modifier.height(28.dp))
         
         Box(
             modifier = Modifier
@@ -120,82 +105,63 @@ fun Profile(navController: NavController) {
             contentAlignment = Alignment.Center
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.circle_user),
+                painter = painterResource(id = R.drawable.person_icon),
                 contentDescription = "Profile Image",
-                modifier = Modifier.size(100.dp),
+                modifier = Modifier.size(90.dp),
                 tint = Color.White
             )
 
-            IconButton(
-                onClick = {  },
+            Box(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
-                    .size(32.dp)
+                    .size(26.dp)
                     .background(Color(0xFF5E6E7F), CircleShape)
+                    .clickable {},
+                contentAlignment = Alignment.Center
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.pen_line),
                     contentDescription = "Edit Profile",
                     tint = Color.White,
-                    modifier = Modifier.size(16.dp)
+                    modifier = Modifier.size(14.dp)
                 )
             }
         }
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        OutlinedTextField(
+        OutlinedTextFieldComponent(
             value = fullName,
             onValueChange = { fullName = it },
-            label = { Text("Full name") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth(),
-            textStyle = TextStyle(fontSize = 16.sp, color = BlueLogo),
-            shape = RoundedCornerShape(12.dp),
-            colors = textFieldColors
+            label = "Full name"
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        OutlinedTextField(
+         OutlinedTextFieldComponent(
             value = cpf,
             onValueChange = { cpf = it },
-            label = { Text("CPF") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth(),
-            textStyle = TextStyle(fontSize = 16.sp, color = BlueLogo),
-            shape = RoundedCornerShape(12.dp),
-            colors = textFieldColors
+            label = "CPF"
         )
-
+        
         Spacer(modifier = Modifier.height(16.dp))
 
-        OutlinedTextField(
+        OutlinedTextFieldComponent(
             value = email,
             onValueChange = { email = it },
-            label = { Text("Email") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth(),
-            textStyle = TextStyle(fontSize = 16.sp, color = BlueLogo),
-            shape = RoundedCornerShape(12.dp),
-            colors = textFieldColors
+            label = "Email"
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        OutlinedTextField(
+         OutlinedTextFieldComponent(
             value = phoneNumber,
             onValueChange = { phoneNumber = it },
-            label = { Text("Phone number") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth(),
-            textStyle = TextStyle(fontSize = 16.sp, color = BlueLogo),
-            shape = RoundedCornerShape(12.dp),
-            colors = textFieldColors
+            label = "Phone number"
         )
 
        
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(30.dp))
 
        
        MainButtonComponent(
@@ -206,7 +172,5 @@ fun Profile(navController: NavController) {
             colorEnd = CobaltBlue,
             isClickable = isFormValid
         )
-
-      
     }
 }

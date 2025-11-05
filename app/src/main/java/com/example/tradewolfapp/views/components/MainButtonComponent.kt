@@ -37,7 +37,7 @@ fun MainButtonComponent(
             .fillMaxWidth()
             .height(50.dp)
             .background(
-                brush = if(isClickable) Brush.horizontalGradient(colors = listOf(colorStart, colorEnd)) else Brush.horizontalGradient(colors = listOf(DarkGray,DullGray)),
+                brush = if(isClickable) Brush.horizontalGradient(colors = listOf(colorStart, colorEnd)) else Brush.horizontalGradient(colors = listOf(DullGray,DarkGray)),
                 shape = RoundedCornerShape(10.dp)
             )
             .clickable(
