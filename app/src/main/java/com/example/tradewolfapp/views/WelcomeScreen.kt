@@ -44,7 +44,6 @@ fun WelcomeScreen(navController: NavController) {
 
         
         Canvas(modifier = Modifier.fillMaxSize()) {
-            val center1 = 
             drawCircle(
                 brush = Brush.radialGradient(
                     colors = listOf(
