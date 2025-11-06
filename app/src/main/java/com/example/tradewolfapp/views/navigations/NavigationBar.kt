@@ -29,7 +29,7 @@ import com.example.tradewolfapp.views.navigations.navigationItems
 fun NavigationBar(
     navController: NavController,
 ) {
-    val navigationItems= navigationItems() 
+    val navigationItems = navigationItems() 
     val currentDestination = navController.currentBackStackEntryAsState().value?.destination
 
     androidx.compose.material3.NavigationBar(

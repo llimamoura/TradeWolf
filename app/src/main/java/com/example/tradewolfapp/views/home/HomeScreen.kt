@@ -74,7 +74,7 @@ fun HomeScreen(
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(16.dp)
                     ){
-                    IconButton(onClick = {}){
+                    IconButton(onClick = {}) {
                         Icon(
                             painter = painterResource(id = R.drawable.search_home ),
                             contentDescription = "Search",

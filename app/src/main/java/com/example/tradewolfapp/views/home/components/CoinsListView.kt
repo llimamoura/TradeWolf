@@ -55,8 +55,8 @@ fun CoinsListView(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Box()
-                    {
+                    Box() {
+                        
                         CoinIcon(
                             iconUrl = coin.icon,
                             modifier = Modifier
