@@ -1,4 +1,4 @@
-package com.example.tradewolfapp.views.auth
+package com.example.tradewolfapp.views.signUp
 
 import android.graphics.Bitmap
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -69,7 +69,7 @@ fun IdCard(navController: NavController) {
                 Button(
                     onClick = {
                         if (capturedImage != null) {
-                            navController.navigate("profile")
+                            navController.navigate("")
                         }
                     },
                     modifier = Modifier
@@ -77,7 +77,7 @@ fun IdCard(navController: NavController) {
                         .height(54.dp)
                         .background(
                             shape = RoundedCornerShape(15.dp),
-                            brush = Brush.horizontalGradient( colors = listOf(DeepBlue,CobaltBlue))
+                            brush = Brush.horizontalGradient( colors = listOf(DeepBlue, CobaltBlue))
                         ),
                     enabled = capturedImage != null,
                     colors = ButtonDefaults.buttonColors(
@@ -133,9 +133,9 @@ fun IdCard(navController: NavController) {
                     .background(Color.White, RoundedCornerShape(12.dp)),
                 contentAlignment = Alignment.Center
             ) {
-                if (capturedImage != null) {
+                capturedImage?.asImageBitmap()?.let { bitmap ->
                     Image(
-                        bitmap = capturedImage!!.asImageBitmap(),
+                        bitmap = bitmap,
                         contentDescription = "Captured ID",
                         modifier = Modifier
                             .fillMaxWidth()
