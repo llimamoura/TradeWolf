@@ -29,7 +29,7 @@ fun TextDivider(text: String) {
         Text(
             text = text,
             textAlign = TextAlign.Center,
-            color = Color.Black,
+            color = Color.Gray,
             modifier = Modifier.padding(horizontal = 8.dp)
         )
         HorizontalDivider(
