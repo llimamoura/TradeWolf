@@ -1,6 +1,5 @@
 package com.example.tradewolfapp.model
 
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.graphics.painter.Painter
 
 data class NavigationItem(

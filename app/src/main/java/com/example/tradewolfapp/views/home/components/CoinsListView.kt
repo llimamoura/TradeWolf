@@ -41,7 +41,8 @@ fun CoinsListView(
         itemsIndexed(coins) { _, coin ->
             Card(
                 modifier = Modifier
-                    .size(width = 380.dp , height = 75.dp)
+                    .fillMaxWidth()
+                    .height(75.dp)
                     .padding(horizontal = 8.dp),
                 shape = RoundedCornerShape(16.dp),
                 colors = CardDefaults.cardColors(
@@ -55,7 +56,7 @@ fun CoinsListView(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Box() {
+                    Box {
                         
                         CoinIcon(
                             iconUrl = coin.icon,
@@ -77,7 +78,7 @@ fun CoinsListView(
                             )
                             Box(
                                 modifier = Modifier
-                                    .size(height = 20.dp,width = 30.dp)
+                                    .size(height = 20.dp, width = 30.dp)
                                     .background(
                                         color = DeepBlue,
                                         shape = RoundedCornerShape(6.dp)
@@ -89,7 +90,7 @@ fun CoinsListView(
                                     fontSize = 11.sp,
                                     color = Color.White,
                                     fontWeight = FontWeight.Bold,
-                                    modifier  = Modifier.fillMaxWidth(),
+                                    modifier = Modifier.fillMaxWidth(),
                                     textAlign = TextAlign.Center,
                                     lineHeight = 20.sp
                                 )

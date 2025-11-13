@@ -17,7 +17,7 @@ fun navigationItems(): List<NavigationItem> {
         NavigationItem(
             icon = painterResource(id = R.drawable.chartline_home),
             route = Screens.Markets.rout
-         ),
+        ),
         NavigationItem(
             icon = painterResource(id = R.drawable.circleplus_home),
             route = Screens.Transaction.rout,
