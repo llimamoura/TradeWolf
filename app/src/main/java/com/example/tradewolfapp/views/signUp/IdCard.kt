@@ -34,10 +34,6 @@ fun IdCard(navController: NavController) {
         capturedImage = bitmap
     }
 
-    LaunchedEffect(Unit) {
-        launcher.launch(null)
-    }
-
     Scaffold(
         bottomBar = {
             Row(
@@ -58,7 +54,7 @@ fun IdCard(navController: NavController) {
                     border = ButtonDefaults.outlinedButtonBorder.copy(width = 2.dp)
                 ) {
                     Text(
-                        text = "Try again",
+                        text = "Take Photo",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold
                     )
