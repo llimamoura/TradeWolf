@@ -18,6 +18,7 @@ import com.example.tradewolfapp.views.auth.Login.LoginForm
 import com.example.tradewolfapp.views.WelcomeScreen
 import com.example.tradewolfapp.views.signUp.ResidencyForm
 import com.example.tradewolfapp.views.signUp.ResidencyScreen
+import com.example.tradewolfapp.views.signUp.CreateAccount
 
 
 import com.example.tradewolfapp.views.WelcomeScreen
@@ -74,6 +75,10 @@ class MainActivity : ComponentActivity() {
 
                     composable("residencyForm"){
                         ResidencyForm(navController)
+                    }
+
+                    composable("createAccount"){
+                        CreateAccount(navController)
                     }
 
                 }
