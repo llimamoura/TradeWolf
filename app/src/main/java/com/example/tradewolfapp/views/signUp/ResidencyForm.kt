@@ -211,8 +211,8 @@ fun ResidencyForm(navController: NavController) {
         MainButtonComponent(
             text = "Continue",
             onClick = {
-                navController.navigate("createAccount")
-             },
+                navController.navigate("idCard")
+            },
             colorText = Color.White,
             colorStart = DeepBlue,
             colorEnd = CobaltBlue
