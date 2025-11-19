@@ -19,13 +19,10 @@ import com.example.tradewolfapp.views.signUp.ResidencyForm
 import com.example.tradewolfapp.views.signUp.ResidencyScreen
 import com.example.tradewolfapp.views.signUp.IdCard
 import com.example.tradewolfapp.views.signUp.CreateAccount
-import com.example.tradewolfapp.views.WelcomeScreen
 import com.example.tradewolfapp.views.auth.Login.ResetPassword.CheckCode
 import com.example.tradewolfapp.views.auth.Login.ResetPassword.CreatePassword
 import com.example.tradewolfapp.views.auth.Login.ResetPassword.RecoverPassword
 import com.example.tradewolfapp.views.navigations.MainScreen
-import com.example.tradewolfapp.views.signUp.CreateAccount
-import com.example.tradewolfapp.views.signUp.IdCard
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 

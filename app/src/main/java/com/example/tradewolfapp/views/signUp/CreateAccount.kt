@@ -37,6 +37,7 @@ fun CreateAccount(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var repeatPassword by remember { mutableStateOf("") }
+    val passwordsMatch = password == repeatPassword
 
     val passwordFocusRequester = remember { FocusRequester() }
     val repeatPasswordFocusRequester = remember { FocusRequester() }
@@ -128,6 +129,17 @@ fun CreateAccount(
             isPassword = true,
             modifier = Modifier.focusRequester(repeatPasswordFocusRequester)
         )
+
+        if (repeatPassword.isNotEmpty() && !passwordsMatch) {
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Passwords do not match",
+                color = Color.Red,
+                fontSize = 12.sp,
+                textAlign = TextAlign.Start,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
 
         Spacer(modifier = Modifier.height(66.dp))
 
