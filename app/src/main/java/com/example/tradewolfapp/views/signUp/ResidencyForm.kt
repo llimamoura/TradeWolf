@@ -210,7 +210,7 @@ fun ResidencyForm(navController: NavController) {
 
         MainButtonComponent(
             text = "Continue",
-            onClick = { 
+            onClick = {
                 navController.navigate("idCard")
             },
             colorText = Color.White,

@@ -65,7 +65,7 @@ fun IdCard(navController: NavController) {
                 Button(
                     onClick = {
                         if (capturedImage != null) {
-                            navController.navigate("")
+                            navController.navigate("createAccount")
                         }
                     },
                     modifier = Modifier
