@@ -32,6 +32,10 @@ class SignUpViewModel (private val authRepository: AuthFirebaseRepository) : Vie
             }
         }
     }
+
+    fun resetSignUpState() {
+        _signUpState.value = SignUpState.Idle
+    }
 }
 
 sealed class SignUpState{
