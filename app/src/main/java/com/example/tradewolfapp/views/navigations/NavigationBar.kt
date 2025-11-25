@@ -22,12 +22,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.tradewolfapp.ui.theme.BackgroundDark
 import com.example.tradewolfapp.ui.theme.DullGray
+import com.example.tradewolfapp.views.navigations.navigationItems
+
 
 @Composable
 fun NavigationBar(
     navController: NavController,
 ) {
-
+    val navigationItems = navigationItems() 
     val currentDestination = navController.currentBackStackEntryAsState().value?.destination
 
     androidx.compose.material3.NavigationBar(
@@ -48,32 +50,22 @@ fun NavigationBar(
                     icon = {
                         Box(
                             modifier = Modifier
-                                .shadow(
-                                    elevation = 12.dp,
-                                    shape = CircleShape,
-                                    clip = true,
-                                    ambientColor = Color.Black.copy(alpha = 0.5f),
-                                    spotColor = Color.Black.copy(alpha = 0.5f),
-                                )
                                 .size(66.dp)
-                                .clip(CircleShape)
                                 .background(Color.White)
                                 .padding(8.dp),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
-                                imageVector = item.icon,
+                                painter = item.icon,
                                 contentDescription = item.title,
-                                modifier = Modifier.size(34.dp)
+                                modifier = Modifier.size(46.dp)
                             )
                         }
                     },
                     colors = NavigationBarItemDefaults.colors(
                         selectedIconColor = Color.Blue.copy(alpha = 0.5f),
-                        unselectedIconColor = Color.Black,
-                        indicatorColor = Color.Transparent,
-                        selectedTextColor = Color.Blue.copy(alpha = 0.5f),
-                        unselectedTextColor = Color.Black
+                        unselectedIconColor = Color(0xFF00234F),
+                        indicatorColor = Color.Transparent
                     )
 
                 )
@@ -89,20 +81,16 @@ fun NavigationBar(
                         }
                     },
                     icon = {
-                        Icon(imageVector = item.icon, contentDescription = item.title)
-                    },
-                    label = {
-                        Text(
-                            text = item.title ?: "",
-
-                            )
+                        Icon(
+                            painter = item.icon, 
+                            contentDescription = item.title,
+                            modifier = Modifier.size(26.dp)
+                        )
                     },
                     colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor =Color.Blue.copy(alpha = 0.5f),
-                        unselectedIconColor = Color.Black,
-                        indicatorColor = Color.Transparent,
-                        selectedTextColor = Color.Blue.copy(alpha = 0.5f),
-                        unselectedTextColor = Color.Black
+                        selectedIconColor = Color.Blue.copy(alpha = 0.5f),
+                        unselectedIconColor = Color(0xFF00234F),
+                        indicatorColor = Color.Transparent
                     )
 
                 )
