@@ -10,16 +10,34 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.SharingStarted
 
 class CoinsViewModel: ViewModel() {
     private val repository = CoinsRepository(ConfigRetrofit.services)
 
     private val _coins = MutableStateFlow<List<CoinModel>>(emptyList())
-
     val coins: StateFlow<List<CoinModel>> = _coins.asStateFlow()
 
     private val _error = MutableStateFlow<String?>(null)
     var error: StateFlow<String?> = _error.asStateFlow()
+
+    private val _query =  MutableStateFlow("")
+    val query: StateFlow<String> = _query.asStateFlow()
+
+    val filterCoins: StateFlow<List<CoinModel>> = 
+        combine(_coins, _query){
+            coins, query ->  if(query.isBlank()){
+                emptyList()
+            }else{
+                coins.filter {
+                    it.name.contains(query, ignoreCase = true) ||
+                    it.symbol.contains(query, ignoreCase = true) 
+
+                }
+            }
+        }.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
@@ -27,7 +45,7 @@ class CoinsViewModel: ViewModel() {
     private val _isSuccess = MutableStateFlow(false)
     val isSuccess: StateFlow<Boolean> = _isSuccess.asStateFlow()
 
- fun loadCoins() {
+    fun loadCoins() {
         viewModelScope.launch {
             _isLoading.value = true
             _isSuccess.value = false
@@ -46,5 +64,7 @@ class CoinsViewModel: ViewModel() {
             }
         }
     }
-
+    fun updateQuery(newQuery: String) {
+        _query.value = newQuery
+    }
 }

@@ -42,6 +42,7 @@ import com.example.tradewolfapp.viewModel.coins.CoinsViewModel
 import com.example.tradewolfapp.views.home.components.CardBalance
 import com.example.tradewolfapp.views.home.components.CoinsListView
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
@@ -65,16 +66,17 @@ fun HomeScreen(
             TopAppBar(
                 title = {
                     Icon(
-                        painter = painterResource(id = R.drawable.logo), //trocar a logo para logohome 
+                        painter = painterResource(id = R.drawable.logohome),
                         contentDescription = "App Logo",
-                        modifier = Modifier.size(36.dp)
+                        tint = Color.Unspecified,
+                        modifier = Modifier.size(76.dp)
                     )
                 },
                 actions = {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(16.dp)
                     ){
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = {navController.navigate("search")}) {
                         Icon(
                             painter = painterResource(id = R.drawable.search_home ),
                             contentDescription = "Search",
@@ -120,10 +122,10 @@ fun HomeScreen(
                     }
                 }
             },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.White,
-                    titleContentColor = Color.Black
-                )
+               colors = TopAppBarDefaults.topAppBarColors(
+                     containerColor = Color.White,
+                     titleContentColor = Color.Black
+               )
             )
         }
     ) { innerPadding ->
