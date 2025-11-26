@@ -65,8 +65,7 @@ fun MainScreen(rootNavController: NavController) {
             composable(Screens.Profile.rout) {
                 ProfileScreen()
             }
-            
-            composable(Screens.Search.rout){
+            composable("search"){
                 SearchScreen(navController = innerNav)
             }
         }

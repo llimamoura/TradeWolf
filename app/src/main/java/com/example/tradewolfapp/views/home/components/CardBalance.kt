@@ -32,6 +32,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tradewolfapp.ui.theme.MidnightBlue
 import com.example.tradewolfapp.utils.formatCryptoValue
 import com.example.tradewolfapp.viewModel.coins.CoinsViewModel
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.ui.graphics.Brush
+import com.example.tradewolfapp.ui.theme.DeepBlue
+import com.example.tradewolfapp.ui.theme.CobaltBlue
+
+
 
 @Composable
 fun CardBalance(
@@ -42,11 +49,20 @@ fun CardBalance(
     Card(
         shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.Blue.copy(alpha = 0.5f)
+            containerColor = Color.Transparent
         ),
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxSize(0.4f)
+            .background(
+                brush = Brush.horizontalGradient(
+                    colors = listOf(
+                        Color(0xFF004EB5).copy(alpha = 0.8f),
+                        Color(0xFF00224F).copy(alpha = 0.8f)
+                    )
+                ),
+                shape = RoundedCornerShape(20.dp)            
+                )
 
     ) {
 
@@ -56,57 +72,24 @@ fun CardBalance(
                 .padding(20.dp)
         ) {
             Text(
-                text = "My balance",
-                color = Color.White.copy(alpha = 0.8f),
-                modifier = Modifier.padding(bottom = 18.dp)
+                text = "My Balance",
+                color = Color.White,
+                fontSize = 22.sp,
+                fontWeight = FontWeight.ExtraBold,
+                modifier = Modifier.padding(top = 10.dp, bottom = 18.dp)
             )
+
+            Spacer(modifier = Modifier.height(56.dp))
+
             Text(
                 text = coins.sumOf { it.price }.formatCryptoValue(),
                 color = Color.White,
-                fontSize = 35.sp,
-                fontWeight = FontWeight.W700,
+                fontSize = 32.sp,
+                fontWeight = FontWeight.ExtraBold,
                 modifier = Modifier.padding(bottom = 10.dp)
             )
         }
-
-            Row(
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxSize(1f)
-                    .padding(horizontal = 30.dp)
-                    .shadow(
-                        elevation = 24.dp,
-                        clip = true,
-                        ambientColor = Color.Black.copy(alpha = 1f),
-                        spotColor = Color.Black.copy(alpha = 1f),
-                    )
-                    .background(
-                        Color.White,
-                        shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp)
-                    ),
-
-                ) {
-                ActionItem(
-                    icon = Icons.AutoMirrored.Filled.TrendingUp,
-                    description = "Trending Up",
-                    text = "Analytics",
-                    onClick = { }
-                )
-                ActionItem(
-                    icon = Icons.Filled.ArrowUpward,
-                    description = "Arrow Upward",
-                    text = "Sell Crypto",
-                    onClick = { }
-                )
-                ActionItem(
-                    icon = Icons.AutoMirrored.Filled.ArrowForward,
-                    description = "Arrow Right Alt",
-                    text = "Send Crypto",
-                    onClick = { }
-                )
-            }
+ 
         }
     }
 

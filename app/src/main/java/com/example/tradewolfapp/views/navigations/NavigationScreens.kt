@@ -7,5 +7,4 @@ sealed class Screens(val rout: String){
     object Markets: Screens("Markets_screen")
     object Wallets: Screens("Wallets_screen")
     object Transaction: Screens("transaction_screen")
-    object Search: Screens("search_screen")
 }

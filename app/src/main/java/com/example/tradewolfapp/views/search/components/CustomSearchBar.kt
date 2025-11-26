@@ -33,11 +33,13 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.tradewolfapp.R
 import com.example.tradewolfapp.ui.theme.CobaltBlue
 import com.example.tradewolfapp.ui.theme.DeepBlue
 import com.example.tradewolfapp.ui.theme.OceanBlue
@@ -125,7 +127,7 @@ fun CustomSearchBar(
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
-                    Icons.Default.Search, //icone temporario
+                    painter = painterResource(id = R.drawable.search_home),
                     contentDescription = "Search", 
                     tint = Color.White,
                     modifier = Modifier.size(30.dp)

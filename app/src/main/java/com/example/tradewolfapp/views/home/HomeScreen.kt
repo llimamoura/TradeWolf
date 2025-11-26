@@ -1,21 +1,16 @@
 package com.example.tradewolfapp.views.home
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.outlined.Notifications
-import androidx.compose.material.icons.rounded.Notifications
-import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -42,14 +37,10 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.tradewolfapp.R
 import com.example.tradewolfapp.ui.theme.BlueLogo
-import com.example.tradewolfapp.ui.theme.DarkGray
-import com.example.tradewolfapp.utils.setTime
-import com.example.tradewolfapp.viewModel.auth.LoginState
 import com.example.tradewolfapp.viewModel.auth.LoginWithGoogleViewModel
 import com.example.tradewolfapp.viewModel.coins.CoinsViewModel
 import com.example.tradewolfapp.views.home.components.CardBalance
 import com.example.tradewolfapp.views.home.components.CoinsListView
-import com.example.tradewolfapp.views.navigations.Screens
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -64,32 +55,45 @@ fun HomeScreen(
     val isSuccess by coinsViewModel.isSuccess.collectAsState()
     val error by coinsViewModel.error.collectAsState()
     val userPhoto = user?.photoUrl
-    val setTime = setTime()
     val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         coinsViewModel.loadCoins()
     }
 
-
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Column(modifier = Modifier.padding(horizontal = 10.dp)) {
-                        Text(text = setTime, color = Color.Gray, fontSize = 16.sp)
-                        Text(
-                            text = user?.displayName ?: "username",
-                            color = Color.Black,
-                            fontSize = 16.sp
+                    Icon(
+                        painter = painterResource(id = R.drawable.logohome),
+                        contentDescription = "App Logo",
+                        tint = Color.Unspecified,
+                        modifier = Modifier.size(76.dp)
+                    )
+                },
+                actions = {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ){
+                    IconButton(onClick = {navController.navigate("search")}) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.search_home ),
+                            contentDescription = "Search",
+                            tint = Color(0xFF00234F),
+                            modifier = Modifier.size(24.dp)
                         )
                     }
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = Color.White,
-                    titleContentColor = Color.Black,
-                ),
-                navigationIcon = {
+                    
+                    IconButton(onClick = {}) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.belldot_home),
+                            contentDescription = "Notifications",
+                            tint = Color(0xFF00234F),
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
+                    
                     if (userPhoto != null) {
                         Image(
                             painter = rememberAsyncImagePainter(
@@ -103,28 +107,25 @@ fun HomeScreen(
                             ),
                             contentDescription = "Profile photo",
                             modifier = Modifier
-                                .padding(start = 12.dp)
-                                .size(50.dp)
+                                .padding(end = 8.dp)
+                                .size(36.dp)
                                 .clip(CircleShape)
                         )
                     } else {
-                        IconButton(onClick = { /*fallback*/ }) {
+                        IconButton(onClick = { /* fallback */ }) {
                             Icon(
                                 painter = painterResource(id = R.drawable.logo),
-                                contentDescription = "logo"
+                                contentDescription = "Default logo",
+                                tint = Color.Unspecified
                             )
                         }
                     }
-                },
-                actions = {
-                    IconButton(onClick = { navController.navigate(Screens.Search.rout) }) {
-                        Icon(
-                            imageVector = Icons.Outlined.Notifications,
-                            contentDescription = "notifications",
-                            tint = Color.Black
-                        )
-                    }
                 }
+            },
+               colors = TopAppBarDefaults.topAppBarColors(
+                     containerColor = Color.White,
+                     titleContentColor = Color.Black
+               )
             )
         }
     ) { innerPadding ->
@@ -155,11 +156,11 @@ fun HomeScreen(
                     Spacer(Modifier.height(25.dp))
                     CardBalance()
                     Text(
-                        text = "My Portfolio",
-                        color = Color.Black,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(bottom = 10.dp, top = 50.dp)
+                        text = "Your assets",
+                        color = BlueLogo,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        modifier = Modifier.padding(bottom = 10.dp, top = 40.dp)
                     )
                     CoinsListView()
                 }
@@ -167,7 +168,3 @@ fun HomeScreen(
         }
     }
 }
-
-
-
-
