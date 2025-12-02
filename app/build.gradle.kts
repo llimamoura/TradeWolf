@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("org.jetbrains.kotlin.plugin.compose") version "2.0.0"
     id("com.google.gms.google-services")
+    id("com.google.dagger.hilt.android") version "2.57.1"
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -16,7 +18,7 @@ android {
     defaultConfig {
         applicationId = "com.example.tradewolfapp"
         minSdk = 27
-        targetSdk = 34 
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -104,6 +106,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation("com.google.dagger:hilt-android:2.57.1")
+    ksp("com.google.dagger:hilt-android-compiler:2.57.1")
+
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
     implementation("io.coil-kt:coil-compose:2.5.0")
     implementation("io.coil-kt:coil-svg:2.5.0")

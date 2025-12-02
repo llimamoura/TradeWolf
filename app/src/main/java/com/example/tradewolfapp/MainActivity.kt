@@ -24,7 +24,9 @@ import com.example.tradewolfapp.views.navigations.MainScreen
 import com.example.tradewolfapp.views.signUp.CreateAccountScreen
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

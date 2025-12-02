@@ -8,8 +8,9 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SignUpViewModel (private val authRepository: AuthFirebaseRepository) : ViewModel() {
+class SignUpViewModel @Inject constructor(private val authRepository: AuthFirebaseRepository) : ViewModel() {
     private val _signUpState = MutableStateFlow<SignUpState>(SignUpState.Idle)
     val signUpState: StateFlow<SignUpState> = _signUpState
 

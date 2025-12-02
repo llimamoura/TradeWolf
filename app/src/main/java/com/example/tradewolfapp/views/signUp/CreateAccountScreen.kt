@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.tradewolfapp.repository.AuthFirebaseRepository
@@ -20,9 +21,7 @@ import com.google.firebase.auth.FirebaseUser
 @Composable
 fun CreateAccountScreen(
     navController: NavController,
-    viewModel: SignUpViewModel = viewModel {
-        SignUpViewModel(AuthFirebaseRepository())
-    },
+    viewModel: SignUpViewModel = hiltViewModel(),
     onSignUpSuccess: (FirebaseUser) -> Unit
 ) {
     val signUpState by viewModel.signUpState.collectAsState()
