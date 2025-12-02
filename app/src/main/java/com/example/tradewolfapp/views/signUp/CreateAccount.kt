@@ -20,10 +20,10 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.navigation.NavController
 import com.example.tradewolfapp.R
+import com.example.tradewolfapp.model.AuthModel
 import com.example.tradewolfapp.ui.theme.DeepBlue
 import com.example.tradewolfapp.ui.theme.CobaltBlue
 import com.example.tradewolfapp.views.components.MainButtonComponent
@@ -32,6 +32,7 @@ import com.example.tradewolfapp.views.components.OutlinedTextFieldComponent
 
 @Composable
 fun CreateAccount(
+    onSignUp: (AuthModel) -> Unit,
     navController : NavController
 ){
     var email by remember { mutableStateOf("") }
@@ -145,7 +146,11 @@ fun CreateAccount(
 
         MainButtonComponent(
             text = "Create",
-            onClick = {},
+            onClick = {
+                if (email.isNotEmpty() && passwordsMatch){
+                    onSignUp(AuthModel(email, password))
+                }
+            },
             colorText = Color.White,
             colorStart = DeepBlue,
             colorEnd = CobaltBlue

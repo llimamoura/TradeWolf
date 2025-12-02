@@ -13,19 +13,20 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tradewolfapp.ui.theme.TradeWolfAppTheme
 import com.example.tradewolfapp.views.auth.Login.LoginScreen
-import com.example.tradewolfapp.views.auth.Login.LoginForm
 import com.example.tradewolfapp.views.WelcomeScreen
 import com.example.tradewolfapp.views.signUp.ResidencyForm
 import com.example.tradewolfapp.views.signUp.ResidencyScreen
 import com.example.tradewolfapp.views.signUp.IdCard
-import com.example.tradewolfapp.views.signUp.CreateAccount
 import com.example.tradewolfapp.views.auth.Login.ResetPassword.CheckCode
 import com.example.tradewolfapp.views.auth.Login.ResetPassword.CreatePassword
 import com.example.tradewolfapp.views.auth.Login.ResetPassword.RecoverPassword
 import com.example.tradewolfapp.views.navigations.MainScreen
+import com.example.tradewolfapp.views.signUp.CreateAccountScreen
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +79,14 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable("createAccount") {
-                        CreateAccount(navController)
+                        CreateAccountScreen(
+                            navController = navController,
+                            onSignUpSuccess = {
+                                navController.navigate("loginScreen"){
+                                    popUpTo("createAccount") { inclusive = true }
+                                }
+                            }
+                        )
                     }
                 }
             }
