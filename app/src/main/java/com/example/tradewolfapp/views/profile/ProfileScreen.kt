@@ -4,17 +4,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -27,6 +22,7 @@ import com.example.tradewolfapp.ui.theme.DeepBlue
 import com.example.tradewolfapp.ui.theme.CobaltBlue
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import com.example.tradewolfapp.views.components.OutlinedTextFieldComponent
 
 @Composable
 fun ProfileScreen() {
@@ -57,7 +53,7 @@ fun ProfileScreen() {
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(60.dp))
+            Spacer(modifier = Modifier.height(50.dp))
             Text(
                 text = "Profile",
                 fontSize = 30.sp,
@@ -69,58 +65,42 @@ fun ProfileScreen() {
 
             Spacer(modifier = Modifier.height(25.dp))
 
-            
-            OutlinedTextField(
+
+            OutlinedTextFieldComponent(
                 value = fullName,
                 onValueChange = { fullName = it },
-                label = {Text("Full name")},
-                placeholder = { Text("Nome") },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-                textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
-                shape = RoundedCornerShape(12.dp)
+                label = "Full Name",
+                modifier = Modifier.fillMaxWidth()
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            OutlinedTextField(
+            OutlinedTextFieldComponent(
                 value = cpf,
                 onValueChange = { cpf = it },
-                label = {Text("CPF")},
-                placeholder = { Text("000.000.000-00") },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-                textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
-                shape = RoundedCornerShape(12.dp)
+                label = "CPF",
+                modifier = Modifier.fillMaxWidth()
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            OutlinedTextField(
+            OutlinedTextFieldComponent(
                 value = email,
                 onValueChange = { email = it },
-                label = {Text("Email")},
-                placeholder = { Text("...@gmail.com") },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-                textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
-                shape = RoundedCornerShape(12.dp)
+                label = "Email",
+                modifier = Modifier.fillMaxWidth()
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            OutlinedTextField(
+            OutlinedTextFieldComponent(
                 value = phoneNumber,
                 onValueChange = { phoneNumber = it },
-                label = {Text("Phone number")},
-                placeholder = { Text("+0 (000)000-000") },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-                textStyle = TextStyle(fontSize = 16.sp, color = Color.Black),
-                shape = RoundedCornerShape(12.dp)
+                label = "Phone Number",
+                modifier = Modifier.fillMaxWidth()
             )
 
-            Spacer(modifier = Modifier.height(60.dp))
+            Spacer(modifier = Modifier.height(50.dp))
 
             MainButtonComponent(
                 text = "Log out",

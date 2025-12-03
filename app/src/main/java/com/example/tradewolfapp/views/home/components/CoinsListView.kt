@@ -1,21 +1,13 @@
 package com.example.tradewolfapp.views.home.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -25,57 +17,96 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.tradewolfapp.ui.theme.Green
+import com.example.tradewolfapp.ui.theme.BlueLogo
+import com.example.tradewolfapp.ui.theme.DeepBlue
 import com.example.tradewolfapp.utils.formatCryptoValue
 import com.example.tradewolfapp.viewModel.coins.CoinsViewModel
 import com.example.tradewolfapp.views.components.CoinIcon
+import androidx.compose.foundation.background 
+import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun CoinsListView(
     modifier: Modifier = Modifier,
     viewModel: CoinsViewModel = viewModel(),
-
 ) {
     val coins by viewModel.coins.collectAsState()
 
-
-        LazyColumn (
-            modifier = Modifier.fillMaxSize()
-        ){
-
-            itemsIndexed(coins) { index, coin ->
-                if (index > 0) {
-                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(0.1f))
-                }
-
-                Column {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 10.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Row {
-                            CoinIcon(iconUrl = coin.icon, modifier = Modifier.size(40.dp))
-                            Spacer(modifier = Modifier.width(15.dp))
-                            Column {
-                                Text(text = coin.symbol, color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                                Text(text = coin.name, color = Color.Gray, fontSize = 14.sp)
-                            }
-                        }
-
+    LazyColumn(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(vertical = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        itemsIndexed(coins) { _, coin ->
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(75.dp)
+                    .padding(horizontal = 8.dp),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.Gray.copy(alpha = 0.3f)
+                )
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box {
+                        
+                        CoinIcon(
+                            iconUrl = coin.icon,
+                            modifier = Modifier
+                                .size(40.dp)
+                                .align(Alignment.CenterStart)
+                        )
+                        
+                        
+                        
                         Column(
-                            horizontalAlignment = Alignment.End
-                        ) {
-                            Text(text = coin.price.formatCryptoValue(), color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 18.sp )
+                            modifier = Modifier.offset(x = 50.dp)
+                        ){
                             Text(
-                                text = "${coin.priceChangeH}%",
-                                color = if (coin.priceChangeH >= 0) Green else Color.Red
+                                text = coin.name,
+                                fontWeight = FontWeight.ExtraBold,
+                                fontSize = 14.sp,
+                                color = DeepBlue
                             )
+                            Box(
+                                modifier = Modifier
+                                    .size(height = 20.dp, width = 30.dp)
+                                    .background(
+                                        color = DeepBlue,
+                                        shape = RoundedCornerShape(6.dp)
+                                    ),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = coin.symbol,
+                                    fontSize = 11.sp,
+                                    color = Color.White,
+                                    fontWeight = FontWeight.Bold,
+                                    modifier = Modifier.fillMaxWidth(),
+                                    textAlign = TextAlign.Center,
+                                    lineHeight = 20.sp
+                                )
+                            }
+                            
                         }
                     }
+
+                    Text(
+                        text = "${coin.price.formatCryptoValue()}",
+                        fontWeight = FontWeight.ExtraBold,
+                        fontSize = 18.sp,
+                        color = DeepBlue
+                    )
                 }
             }
         }
     }
-
+}

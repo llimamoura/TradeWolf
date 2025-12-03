@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.FontWeight
 
 @Composable
 fun MainButtonComponent(
@@ -45,7 +47,9 @@ fun MainButtonComponent(
         ){
           Text(
             text = text,
-            color = colorText
+            color = colorText,
+            fontWeight = FontWeight.Bold,
+            fontSize = 16.sp
             )      
         }
         
